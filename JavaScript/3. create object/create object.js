@@ -16,7 +16,7 @@ function Human(firstName, lastName) {
   this.lastName = lastName;
   this.fullName = function () {
     return this.firstName + ' ' + this.lastName;
-  }
+  };
 }
 
 var tc = new Human('t', 'c');
