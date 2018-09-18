@@ -12,11 +12,11 @@ console.log(o1.name);                             // tc9011
 
 // Object Constructor
 function Human(firstName, lastName) {
-  this.firstName = firstName,
-    this.lastName = lastName,
-    this.fullName = function () {
-      return this.firstName + ' ' + this.lastName;
-    }
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.fullName = function () {
+    return this.firstName + ' ' + this.lastName;
+  }
 }
 
 var tc = new Human('t', 'c');
