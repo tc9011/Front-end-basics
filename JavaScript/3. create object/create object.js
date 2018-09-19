@@ -5,7 +5,7 @@ var o = {
 console.log(o.name);                              // tc9011
 
 
-// using new Object() syntax
+// using `new Object()` syntax
 var o1 = new Object({name: 'tc9011'});
 console.log(o1.name);                             // tc9011
 
@@ -23,7 +23,7 @@ var tc = new Human('t', 'c');
 console.log(tc.fullName());                      // t c
 
 
-// using Object.create() syntax
+// using `Object.create()` syntax
 const person = {
   isHuman: true,
 };
