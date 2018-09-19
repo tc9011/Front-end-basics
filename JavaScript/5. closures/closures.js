@@ -27,6 +27,8 @@ function baz(fn) {
 foo();                                          // 0
 
 
+
+
 var a = 0;
 setTimeout(function () {
   console.log(a);
@@ -35,3 +37,11 @@ setTimeout(function () {
 function setTimeout(fn, delay) {
     fn();                                     // 0
 }
+
+
+
+
+var a = 0;
+(function IIFE() {
+  console.log(a);                             // 0
+})();
