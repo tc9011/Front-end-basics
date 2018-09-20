@@ -1,8 +1,10 @@
 function foo() {
   var a = 0;
+
   function bar() {
     console.log(a);
   }
+
   return bar;
 }
 
@@ -14,9 +16,11 @@ baz();						                    // 0
 
 function foo() {
   var a = 0;
+
   function bar() {
     console.log(a);
   }
+
   baz(bar);
 }
 
@@ -35,7 +39,7 @@ setTimeout(function () {
 }, 1000);
 
 function setTimeout(fn, delay) {
-    fn();                                     // 0
+  fn();                                     // 0
 }
 
 
@@ -50,14 +54,14 @@ var a = 0;
 
 
 for (var i = 1; i < 5; i++) {
-  setTimeout(function() {
+  setTimeout(function () {
     console.log(i)                        // 5 5 5 5
   }, 1000);
 }
 
 for (var i = 1; i < 5; i++) {
-  (function(j) {
-    setTimeout(function() {
+  (function (j) {
+    setTimeout(function () {
       console.log(j)                      // 1 2 3 4
     }, 1000);
   })(i);
@@ -65,8 +69,9 @@ for (var i = 1; i < 5; i++) {
 
 
 
+
 function coolModule() {
-  var something = "cool";
+  var something = 'cool';
   var another = [1, 2, 3];
 
   function doSomething() {
