@@ -31,7 +31,7 @@ function SubType() {
 }
 
 // inherit SuperType
-SubType.prototype = new SuperType();//相当于重写了SubType的原型对象
+SubType.prototype = new SuperType();    // override SubType's prototype
 SubType.prototype.getSubValue = function () {
   return this.subproperty;
 };
