@@ -45,3 +45,20 @@ var a = 0;
 (function IIFE() {
   console.log(a);                             // 0
 })();
+
+
+
+
+for (var i = 1; i < 5; i++) {
+  setTimeout(function() {
+    console.log(i)                        // 5 5 5 5
+  }, 1000);
+}
+
+for (var i = 1; i < 5; i++) {
+  (function(j) {
+    setTimeout(function() {
+      console.log(j)                      // 1 2 3 4
+    }, 1000);
+  })(i);
+}
