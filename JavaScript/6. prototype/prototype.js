@@ -8,7 +8,7 @@ function Person(name, age, job) {
 }
 
 var person = new Person('tc9011', 28, 'Software Engineer');
-console.log(person.constructor === Person);
-console.log(Person.prototype.constructor === Person);
-console.log(person.__proto__.constructor === Person);
-console.log(person.__proto__ === Person.prototype);
+console.log(person.constructor === Person);                     // true
+console.log(Person.prototype.constructor === Person);           // true
+console.log(person.__proto__.constructor === Person);           // true
+console.log(person.__proto__ === Person.prototype);             // true
