@@ -50,3 +50,17 @@ var o2 = {
 };
 o.sayName.call(o2, 15, true);                                 // tc 15 true
 o.sayName.apply(o2, [16, false]);                             // tc 16 false
+
+
+
+
+
+function foo() {
+  setTimeout(() => {
+    console.log('id:', this.id);
+  }, 100)
+}
+
+var id = 21;
+
+foo.call({id: 42});                                         // id: 42
