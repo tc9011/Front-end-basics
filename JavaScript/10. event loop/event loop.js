@@ -19,6 +19,9 @@ console.log('Welcome to loupe.');
 // You clicked the button!
 
 
+
+
+
 setTimeout(function () {
   console.log(1);
 });
@@ -33,3 +36,34 @@ new Promise(function (resolve, reject) {
 // 2
 // 3
 // 1
+
+
+
+
+
+
+console.log(1);
+// stack
+setTimeout(function () {
+  console.log(2);
+  // micro task
+  Promise.resolve(100).then(function () {
+    console.log('promise')
+  })
+});
+// stack
+let promise = new Promise(function (resolve, reject) {
+  console.log(7);
+  resolve(100)
+}).then(function (data) {
+  // micro task
+  console.log(data)
+});
+// stack
+setTimeout(function () {
+  console.log(3)
+});
+console.log(5);
+
+// in browser：1 7 5 100 2 promise 3
+// in node：  1 7 5 100 2 3 promise
