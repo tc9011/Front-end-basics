@@ -2,16 +2,6 @@
  * shallow copy
  */
 
-// shallow copy in the object
-var person1 = {
-  name: 'tc'
-};
-var person2 = person1;
-
-console.log(person2.name);          // tc
-person2.name = 'tc9011';
-console.log(person1.name);          // tc9011
-
 // shallow copy in the array
 var array1 = [0, 1, 2, 3, { name: 'a' }];
 var array2 = array1.slice();
@@ -84,3 +74,17 @@ console.log(o2.fun === o1.fun);             // true
 
 
 // a deep copy by `JSON.stringify()` and `JSON.parse()`
+function deepCopy(source){
+  return JSON.parse(JSON.stringify(source));
+}
+var o1 = {
+  arr: [1, 2, 3],
+  obj: {
+    key: 'value'
+  },
+  func: function(){
+    return 1;
+  }
+};
+var o2 = deepCopy(o1);
+console.log(o2);                          // { arr: [ 1, 2, 3 ], obj: { key: 'value' } }
