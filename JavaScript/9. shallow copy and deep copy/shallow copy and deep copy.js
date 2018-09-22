@@ -88,3 +88,48 @@ var o1 = {
 };
 var o2 = deepCopy(o1);
 console.log(o2);                          // { arr: [ 1, 2, 3 ], obj: { key: 'value' } }
+
+
+
+
+// common deep copy
+function deepCopy(source) {
+  if (!source || typeof source !== 'object') {
+    throw new Error ('error arguments');
+  }
+
+  var targetObj = Object.prototype.toString.call(source) === '[object Array]' ? [] : {};
+  for (var key in source) {
+    if (source.hasOwnProperty(key)) {
+      if (source[key] && typeof source[key] === 'object') {
+        targetObj[key] = Object.prototype.toString.call(source) === '[object Array]' === Array ? [] : {};
+        targetObj[key] = deepCopy(source[key]);
+      } else if (source[key] && Object.prototype.toString.call(source[key]) === '[object Function]') {
+        targetObj[key] = new Function("return " + source[key].toString())();
+      } else {
+        targetObj[key] = source[key];
+      }
+    }
+  }
+  return targetObj;
+}
+
+var o1 = {
+  arr: [1, 2, 3],
+  obj: {
+    key: 'value'
+  },
+  fun: function(){
+    return 1;
+  }
+};
+
+var o2 = deepCopy(o1);
+
+console.log(o2 === o1);                     // false
+console.log(o2.obj === o1.obj);             // false
+console.log(o2.fun === o1.fun);             // false
+
+o2.obj.key = 'tc';
+console.log(o2);                            // { arr: [ 1, 2, 3 ], obj: { key: 'tc' }, fun: [Function] }
+console.log(o1);                            // { arr: [ 1, 2, 3 ], obj: { key: 'value' }, fun: [Function: fun] }
