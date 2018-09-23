@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">click</button>
+<script>
+  var btn = document.getElementById('btn');
+  btn.onclick = function (event) {
+    alert(event.currentTarget === this);	                    //true
+    alert(event.target === this);			                    //true
+  };
+
+  document.body.onclick = function (event) {
+    alert(event.currentTarget === document.body);		        // true
+    alert(this === document.body);					            // true
+    alert(event.target === btn);	                            // true
+    alert(event.currentTarget === this);                        // true
+    alert(event.target === this);                               // false
+  };
+</script>
+</body>
+</html>
