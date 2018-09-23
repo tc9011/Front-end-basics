@@ -33,3 +33,18 @@ console.log(me.isHman);                         // true
 
 me.name = 'tc9011';                             // "name" is a property set on "me", but not on "person"
 me.isHman = true;                               // inherited properties can be overwritten
+
+
+// create object by prototype
+function Human() {}
+
+Human.prototype.firstName = 't';
+Human.prototype.lastName = 'c';
+Human.prototype.fullName = function () {
+  return this.firstName + ' ' + this.lastName;
+};
+
+var p1 = new Human();
+console.log(p1.firstName);                    // t
+console.log(p1.lastName);                     // c
+p1.fullName();                                // t c
