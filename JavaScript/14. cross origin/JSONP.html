@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function todo(data){
+    console.log('The author is: '+ data.name);
+  }
+
+  var script = document.createElement('script');
+  script.src = 'http://tc9011.com/author?callback=todo';
+  document.body.appendChild(script);
+</script>
+</body>
+</html>
