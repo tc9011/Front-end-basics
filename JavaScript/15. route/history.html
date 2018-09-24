@@ -7,6 +7,30 @@
     <title>Title</title>
 </head>
 <body>
+<p id="menu">
+    <a href="/profile" title="profile">profile</a>
+    <a href="/account" title="account">account</a>
+</p>
+<div class="main" id="main"></div>
+<script>
+  (function(){
+    var menubox = document.getElementById('menu');
+    var mainbox = document.getElementById('main');
 
+    menubox.addEventListener('click',function(e){
+      e.preventDefault();
+      var elm = e.target;
+      var uri = elm.href;
+      var tlt = elm.title;
+      history.pushState({path:uri,title:tlt},null,uri);
+      mainbox.innerHTML = 'current page is '+tlt;
+    });
+    window.addEventListener('popstate',function(e){
+      var state = e.state;
+      console.log(state);
+      mainbox.innerHTML = 'current page is ' + state.title;
+    })
+  })()
+</script>
 </body>
 </html>
