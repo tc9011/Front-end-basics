@@ -7,6 +7,7 @@
         .topDiv {
             width: 500px;
             border: 2px solid black;
+            overflow: auto;
         }
         .floatDiv {
             width: 100px;
@@ -26,16 +27,22 @@
             color: blue;
             border: 2px solid blue;
         }
-        .blankDiv {
-            clear: both; /* or left */
-        }
+        /*.blankDiv {
+            clear: both; !* or left *!
+        }*/
+        /*.clearfix:after {*/
+            /*content: '';*/
+            /*height: 0;*/
+            /*display: block;*/
+            /*clear: both;*/
+        /*}*/
     </style>
 </head>
 <body>
-<div class="topDiv">
+<div class="topDiv clearfix">
     <div class="textDiv">...</div>
     <div class="floatDiv">float left</div>
-    <div class="blankDiv"></div>
+    <!--<div class="blankDiv"></div>-->
 </div>
 <div class="bottomDiv">...</div>
 </body>
