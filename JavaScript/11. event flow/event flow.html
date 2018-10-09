@@ -11,6 +11,7 @@
             height: 200px;
             background: mediumpurple;
         }
+
         #outer {
             position: relative;
             top: 50px;
@@ -19,10 +20,11 @@
             height: 100px;
             background: #00abff;
         }
+
         #inner {
             position: relative;
             top: 25px;
-            left:25px;
+            left: 25px;
             width: 50px;
             height: 50px;
             background: white;
@@ -40,24 +42,24 @@
   var outer = document.getElementById('outer');
   var inner = document.getElementById('inner');
 
-  wrap.addEventListener('click',function(){
+  wrap.addEventListener('click', function () {
     alert('789');
-  },false);
-  outer.addEventListener('click',function(){
+  }, false);
+  outer.addEventListener('click', function () {
     alert('456');
-  },false);
-  inner.addEventListener('click',function(){
+  }, false);
+  inner.addEventListener('click', function () {
     alert('123');
-  },false);
-  wrap.addEventListener('click',function(){
+  }, false);
+  wrap.addEventListener('click', function () {
     alert('wrap');
-  },true);
-  outer.addEventListener('click',function(){
+  }, true);
+  outer.addEventListener('click', function () {
     alert('outer');
-  },true);
-  inner.addEventListener('click',function(){
+  }, true);
+  inner.addEventListener('click', function () {
     alert('inner');
-  },true);
+  }, true);
 </script>
 </body>
 </html>
