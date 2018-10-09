@@ -43,7 +43,7 @@ new Promise(function (resolve, reject) {
 
 
 console.log(1);
-// stack
+// macro task
 setTimeout(function () {
   console.log(2);
   // micro task
@@ -51,7 +51,7 @@ setTimeout(function () {
     console.log('promise')
   })
 });
-// stack
+// macro task
 let promise = new Promise(function (resolve, reject) {
   console.log(7);
   resolve(100)
@@ -59,7 +59,7 @@ let promise = new Promise(function (resolve, reject) {
   // micro task
   console.log(data)
 });
-// stack
+// macro task
 setTimeout(function () {
   console.log(3)
 });
