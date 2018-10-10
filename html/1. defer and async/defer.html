@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--result: 3 1 2-->
+    <script type="text/javascript" src="./1.js" defer></script>
+    <script type="text/javascript" src="./2.js" defer></script>
+    <script type="text/javascript" defer>
+      console.log(3);
+    </script>
+</head>
+<body>
+<div class="text">Hello World</div>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function() {
+    console.log('dom content loaded, ready state:', this.readyState);
+  }, false);
+
+  window.addEventListener('load', function() {
+    console.log('window loaded, dom ready state:', document.readyState);
+  }, false);
+</script>
+</body>
+</html>
