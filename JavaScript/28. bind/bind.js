@@ -44,3 +44,13 @@ if (!Function.prototype.bind) {
     return fBound;
   }
 }
+
+
+function foo() {
+  this.b = 100;
+  return this.a;
+}
+
+var func = foo.bind({a: 1});
+func();     // 1
+new func(); // foo { b: 100 }
