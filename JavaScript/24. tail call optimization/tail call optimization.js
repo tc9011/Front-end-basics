@@ -23,23 +23,23 @@ function f2() {
 
 
 // recursive without tail call
-function recursive(x) {
+function factorial(x) {
   if (x <= 0) {
     return 1;
   } else {
-    return x * tailRecursive(x - 1);
+    return x * factorial(x-1);
   }
 }
 
 // tail recursive
-function factor(n) {
-  return recursive(n, 1);
+function factorial(n) {
+  return facRec(n, 1);
 }
 
-function recursive(x, acc) {
-  if (x <= 0) {
+function facRec(x, acc) {
+  if (x <= 1) {
     return acc;
   } else {
-    return recursive(x - 1, x * acc);
+    return facRec(x-1, x*acc);
   }
 }
