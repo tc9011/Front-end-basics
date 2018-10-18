@@ -28,7 +28,7 @@ if (!Function.prototype.bind) {
         fNOP = function () {},
         fBound = function () {
           // this instanceof fNOP === true时,说明返回的fBound被当做new的构造函数调用
-          // fToBind 指向调用bind的函数, 这里的 this 指向调用 调用bind的对象 的对象
+          // fToBind 指向调用bind的函数, 这里的 this 是bind函数被调用后，返回的新函数中的this
           return fToBind.apply(this instanceof fNOP ? this : oThis,
             // 获取调用时(fBound)的传参.bind 返回的函数入参往往是这么传递的
             aArgs.concat(Array.prototype.slice.call(arguments)));
