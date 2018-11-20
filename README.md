@@ -1,8 +1,6 @@
-# 前端常用基础知识汇总
-
 ## HTML
 
-> 行内元素和块级元素的区别
+### 行内元素和块级元素的区别
 
 行内元素：`a`、`img`、`b`、`i`、`input`、`label`、`em`、`span`、`strong`、`select`等
 
@@ -17,9 +15,10 @@
 
 <div class="dividing-line"></div>
 
-> script标签的`defer`和`async`的区别
+### script标签的`defer`和`async`的区别
 
 `<script>`标签可能会阻塞html解析，从而影响首页加载速度，可以使用async进行异步加载或者用defer进行延迟加载。
+
 
 async属性表示脚本会在下载后尽快执行，但不能保证脚本会按照顺序执行。
 
@@ -27,7 +26,7 @@ defer属性表示脚本会先下载，但会在整个页面都解析完成后再
 
 用网上一张图能比较明显得看出两者的不同之处。
 
-![](http://ofx4ie5iq.bkt.clouddn.com/20180120151644504120778.jpg)
+![](/assets/images/前端常见知识点总结/20160503104416135.jpeg)
 
 蓝色线代表网络读取，红色线代表执行时间，这俩都是针对脚本的；绿色线代表 HTML 解析。
 
@@ -39,7 +38,7 @@ defer属性表示脚本会先下载，但会在整个页面都解析完成后再
 
 <div class="dividing-line"></div>
 
-> SVG 和 Canvas的区别
+### SVG 和 Canvas的区别
 
 1. 从图像类别区分，Canvas是基于像素的位图，而SVG却是基于矢量图形。可以简单的把两者的区别看成photoshop与illustrator的区别。
 2. 从渲染模式上来说，Canvas属于 **即时模式**，而SVG则是 **保留模式** ,这两种模式的区别可以参见 cshao 的博文： [http://www.lifelaf.com/blog/?p=354。](http://www.lifelaf.com/blog/?p=354%E3%80%82)
@@ -58,7 +57,7 @@ defer属性表示脚本会先下载，但会在整个页面都解析完成后再
 
 <div class="dividing-line"></div>
 
-> meta标签和viewport
+### meta标签和viewport
 
 meta标签是HTML中头部的一个辅助性标签，它位于HTML文档头部的 和` <title>`标记之间，常用于定义页面的说明，关键字，最后修改日期，和其它的元数据。这些元数据将服务于浏览器（如何布局或重载页面），搜索引擎和其它网络服务。
 meta虽对用户不可见，但是它的用处非常大，设置合适的meta标签可以很大程度上提高网站页面的可用性。
@@ -69,28 +68,38 @@ meta虽对用户不可见，但是它的用处非常大，设置合适的meta标
 meta标签中http-equiv属性语法格式是：`<meta http-equiv="参数" content="具体的描述">`。
 其中，http-equiv属性主要有以下参数：
 
-- **content-Type(显示字符集的设定)**：说明，设定页面使用的字符集，推荐使用HTML5的方式；用法，`＜meta http-equiv="content-Type" content="text/html; charset=utf-8"＞`。
-- **X-UA-Compatible(浏览器采用何种版本渲染当前页面)**：说明，用于告知浏览器用何种版本渲染页面，一般设置为最新模式；用法，`<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> //指定IE和Chrome使用最新版本渲染当前页面`。
-- **cache-control(指定请求和响应遵循的缓存机制)**：
-  - 用法1
+* **content-Type(显示字符集的设定)**：说明，设定页面使用的字符集，推荐使用HTML5的方式；用法，`＜meta http-equiv="content-Type" content="text/html; charset=utf-8"＞`。
+
+* **X-UA-Compatible(浏览器采用何种版本渲染当前页面)**：说明，用于告知浏览器用何种版本渲染页面，一般设置为最新模式；用法，`<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> //指定IE和Chrome使用最新版本渲染当前页面`。
+
+* **cache-control(指定请求和响应遵循的缓存机制)**：
+  * 用法1
     说明，指导浏览器如何缓存某个响应以及缓存多长时间；用法，`<meta http-equiv="cache-control" content="no-cache">`。
     一共有以下几种用法：1.no-cache，先发送请求，与服务器确认该资源是否被更改，如果未被更改，则使用缓存。2.no-store，不允许缓存，每次都要去服务器下载完整的缓存，这也是基于安全考虑。3.public，缓存所有响应，但并非必须。因为max-age也可以做到相同效果。4.private，只为单个用户缓存，因此不允许任何中继进行缓存。（CDN）5.maxage，表示当前请求开始，该响应在多久内能被缓存和重用，而不去服务器重新请求。例如：max-age=60表示响应可以再缓存和重用 60 秒。
-  - 用法2(禁止百度自动转码)
+  * 用法2(禁止百度自动转码)
     说明，用于禁止当前页面在移动端浏览时，被百度自动转码。所以可以在head中加入例子中的那句话，就可以避免百度自动转码了。`<meta http-equiv="Cache-Control" content="no-siteapp">`。
-- **expires(网页到期时间)**：说明，用于设定网页的到期时间，过期后网页必须重新到服务器上传输；用法，`<meta http-equiv="expires" content="Sunday 26 October 2016 01:00 GMT" />`。
-- **refresh(自动刷新并指向某页面)**：说明，自动刷新并指向新页面；用法，`<meta http-equiv="Refresh content="2; URL=http://www.root.net">`。
-- **Set-Cookie(cookie设定)**：说明，设置cookie，如果网页过期，那么存在网页的cookie也将会被删除；用法，`＜meta http-equiv="Set-Cookie" content="cookievalue=xxx; expires=Friday, 12-Jan-2001 18:18:18 GMT； path=/"＞// 必须使用GMT的时间格式`。
-- **Pragma(cache模式)**：说明，禁止从浏览器从本地计算机的缓存中访问页面内容；用法，`＜meta http-equiv="Pragma" content="no-cache"＞`。
+
+* **expires(网页到期时间)**：说明，用于设定网页的到期时间，过期后网页必须重新到服务器上传输；用法，`<meta http-equiv="expires" content="Sunday 26 October 2016 01:00 GMT" />`。
+
+* **refresh(自动刷新并指向某页面)**：说明，自动刷新并指向新页面；用法，`<meta http-equiv="Refresh content="2; URL=http://www.root.net">`。
+
+* **Set-Cookie(cookie设定)**：说明，设置cookie，如果网页过期，那么存在网页的cookie也将会被删除；用法，`＜meta http-equiv="Set-Cookie" content="cookievalue=xxx; expires=Friday, 12-Jan-2001 18:18:18 GMT； path=/"＞// 必须使用GMT的时间格式`。
+
+* **Pragma(cache模式)**：说明，禁止从浏览器从本地计算机的缓存中访问页面内容；用法，`＜meta http-equiv="Pragma" content="no-cache"＞`。
 
 **name**：主要用于描述网页，比如网页的关键词，叙述等。与之对应的属性值为content，content中的内容是对name填入类型的具体描述，便于搜索引擎抓取。
 meta标签中name属性语法格式是`<meta name="参数" content="具体的描述">`。
 其中，name主要有以下参数：
 
-- **keyword(关键字)**：说明，用于告诉搜索引擎，网页的关键字；用法，`<meta name="keywords" content="博客，前端">`。
-- **description(网站内容的描述)**：说明，用于告诉搜索引擎，网站的主要内容；用法，`<meta name="description" content="热爱前端与编程">`。
-- **viewport(移动端的窗口)**：说明，这个属性常用于设计移动端网页；用法，`<meta name="viewport" content="width=device-width, initial-scale=1">`。
-- **robots(定义搜索引擎爬虫的索引方式)**：说明，robots用于告诉爬虫哪些页面需要索引，哪些页面不需要索引。content的参数有all（搜索引擎将索引此网页与继续通过此网页的链接索引，等价于index，follow）、none（ 搜索引擎将忽略此网页，等价于noindex，nofollow）、index（搜索引擎索引此网页）、noindex（搜索引擎不索引此网页）、follow（搜索引擎继续通过此网页的链接索引搜索其它的网页）、nofollow（ 搜索引擎不继续通过此网页的链接索引搜索其它的网页）。默认是all；用法，`<meta name="robots" content="none">`。
-- **author(作者)**：说明，标注网页的作者；用法，`＜meta name="author" content = "root,root@21cn.com"＞`。
+* **keyword(关键字)**：说明，用于告诉搜索引擎，网页的关键字；用法，`<meta name="keywords" content="博客，前端">`。
+
+* **description(网站内容的描述)**：说明，用于告诉搜索引擎，网站的主要内容；用法，`<meta name="description" content="热爱前端与编程">`。
+
+* **viewport(移动端的窗口)**：说明，这个属性常用于设计移动端网页；用法，`<meta name="viewport" content="width=device-width, initial-scale=1">`。
+
+* **robots(定义搜索引擎爬虫的索引方式)**：说明，robots用于告诉爬虫哪些页面需要索引，哪些页面不需要索引。content的参数有all（搜索引擎将索引此网页与继续通过此网页的链接索引，等价于index，follow）、none（ 搜索引擎将忽略此网页，等价于noindex，nofollow）、index（搜索引擎索引此网页）、noindex（搜索引擎不索引此网页）、follow（搜索引擎继续通过此网页的链接索引搜索其它的网页）、nofollow（ 搜索引擎不继续通过此网页的链接索引搜索其它的网页）。默认是all；用法，`<meta name="robots" content="none">`。
+
+* **author(作者)**：说明，标注网页的作者；用法，`＜meta name="author" content = "root,root@21cn.com"＞`。
 
 其中`viewport`有以下属性：
 
@@ -106,20 +115,20 @@ meta标签中name属性语法格式是`<meta name="参数" content="具体的描
 
 <div class="dividing-line"></div>
 
-> data - xxx 属性的作用是什么
+### data - xxx 属性的作用是什么
 
 HTML5规范里增加了一个自定义data属性，可以往HTML里面添加任意以 `data-`开头的属性, 这些属性页面上是不显示的，它不会影响到你的页面布局和风格，但它却是可读可写的。存储的（自定义）数据能够被页面的 JavaScript 中利用，以创建更好的用户体验（不进行 Ajax 调用或服务器端数据库查询）。
 组成：
 属性名不应该包含任何大写字母，并且在前缀`data-`之后必须有至少一个字符。
 属性值可以是任意字符串。
 
-- JavaScript访问
+* JavaScript访问
 
 在外部使用JavaScript去访问这些属性的值同样非常简单。你可以使用`getAttribute()`配合它们完整的HTML名称去读取它们，但标准定义了一个更简单的方法：[`DOMStringMap`](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMStringMap)你可以使用[`dataset`](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/dataset)读取到数据。
 
 为了使用`dataset`对象去获取到数据属性，需要获取属性名中data-之后的部分(要注意的是破折号连接的名称需要改写为骆驼拼写法(如"index-number"转换为"indexNumber"))。
 
-- CSS访问
+* CSS访问
 
 通过[generated content](https://developer.mozilla.org/en-US/docs/Web/CSS/content)使用函数[`attr()`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/attr)来显示data-parent的内容：
 
@@ -144,21 +153,21 @@ article[data-columns='4'] {
 
 ## CSS
 
-> CSS盒子模型
+### CSS盒子模型
 
 盒模型又称框模型（Box Model）,包含了元素内容（content）、内边距（padding）、边框（border）、外边距（margin）几个要素。如图：
 
-![20180928153814277351455.png](http://ofx4ie5iq.bkt.clouddn.com/20180928153814277351455.png)
+![20180928153814277351455.png](/assets/images/前端常见知识点总结/20180928153814277351455.png)
 
 盒模型分为IE模型和标准模型。
 
 **标准模型元素宽度width=content**，高度计算相同：
 
-![20180928153814290654601.png](http://ofx4ie5iq.bkt.clouddn.com/20180928153814290654601.png)
+![20180928153814290654601.png](/assets/images/前端常见知识点总结/20180928153814290654601.png)
 
 **IE模型元素宽度width=content+padding+border**，高度计算相同：
 
-![2018092815381429369561.png](http://ofx4ie5iq.bkt.clouddn.com/2018092815381429369561.png)
+![2018092815381429369561.png](/assets/images/前端常见知识点总结/2018092815381429369561.png)
 
 通过css3新增的属性 `box-sizing: content-box | border-box`分别设置盒模型为标准模型（`content-box`）和IE模型（`border-box`）。
 
@@ -168,13 +177,13 @@ article[data-columns='4'] {
 
 <div class="dividing-line"></div>
 
-> CSS优先级
+### CSS优先级
 
 内联样式 > ID选择器 > 类选择器 = 属性选择器 = 伪类 > 类型选择器 = 伪元素 > 通用选择器`*` > 继承的样式
 
 <div class="dividing-line"></div>
 
-> link和@import的区别
+### link和@import的区别
 
 1. `link`是XHTML标签，除了加载CSS外，还可以定义RSS等其他事务；`@import`属于CSS范畴，只能加载CSS。
 2. `link`引用CSS时，在页面载入时同时加载；`@import`需要页面网页完全载入以后加载。
@@ -183,9 +192,9 @@ article[data-columns='4'] {
 
 <div class="dividing-line"></div>
 
-> 负margin
+### 负margin
 
-![20181013153944105537403.jpg](http://ofx4ie5iq.bkt.clouddn.com/20181013153944105537403.jpg)
+![20181013153944105537403.jpg](/assets/images/前端常见知识点总结/20181013153944105537403.jpg)
 
 当static元素的margin-top/margin-left被赋予负值时，元素将被拉进指定的方向。
 
@@ -201,9 +210,9 @@ article[data-columns='4'] {
 
 <div class="dividing-line"></div>
 
-> 布局（以三栏布局为例）
+### 布局（以三栏布局为例）
 
-- 自身浮动
+* 自身浮动
 
 注意DOM文档的书写顺序，先写两个侧边栏，再写`main`，更换后则侧栏会被挤到下一列，这种布局方式比较简单明了，但缺点是渲染时先渲染了侧边栏，而不是比较重要的主面板。
 
@@ -232,7 +241,7 @@ article[data-columns='4'] {
 </div>
 ```
 
-- 绝对定位法
+* 绝对定位法
 
 本方法不限制DOM书写顺序，先写主面板会使主面板部分优先渲染。如果中间栏含有最小宽度限制，或是含有宽度的内部元素，则浏览器窗口小到一定程度，主面板与侧栏会发生重叠。
 
@@ -261,9 +270,9 @@ article[data-columns='4'] {
 <div class="extra">right</div>
 ```
 
-- margin负值法
+* margin负值法
 
-  - 圣杯布局
+  * 圣杯布局
 
   主面板设置宽度为100%，主面板与两个侧栏都设置浮动，常见为左浮动，这时两个侧栏会被主面板挤下去。通过负边距将浮动的侧栏拉上来，左侧栏的负边距为100%，刚好是窗口的宽度，因此会从主面板下面的左边跑到与主面板对齐的左边，右侧栏此时浮动在主面板下面的左边，设置负边距为负的自身宽度刚好浮动到主面板对齐的右边。为了避免侧栏遮挡主面板内容，在外层设置左右`padding`值为左右侧栏的宽度，给侧栏腾出空间，此时主面板的宽度减小。由于侧栏的负`margin`都是相对主面板的，两个侧栏并不会像我们理想中的停靠在左右两边，而是跟着缩小的主面板一起向中间靠拢。此时使用相对布局，调整两个侧栏到相应的位置。
 
@@ -304,7 +313,7 @@ article[data-columns='4'] {
   </div>
   ```
 
-  - 双飞翼布局
+  * 双飞翼布局
 
   双飞翼布局在圣杯布局上做了改进，在`main`元素上加了一层`div`, 并设置`margin`,由于两侧栏的负边距都是相对于`main-wrap`而言，`main`的`margin`值变化便不会影响两个侧栏，因此省掉了对两侧栏设置相对布局的步骤。
 
@@ -340,7 +349,7 @@ article[data-columns='4'] {
   <div class="extra">extra</div>
   ```
 
-- flex
+* flex
 
 ```html
 <style>
@@ -389,9 +398,9 @@ article[data-columns='4'] {
 
 <div class="dividing-line"></div>
 
-> 垂直居中
+### 垂直居中
 
-- 单行文本
+* 单行文本
 
 ```html
 <style>
@@ -408,9 +417,9 @@ article[data-columns='4'] {
 </div>
 ```
 
-- 元素高度不固定（在这里是子元素高度不固定）
+* 元素高度不固定（在这里是子元素高度不固定）
 
-  - vertical-align
+  * vertical-align
 
   `vertical-align` 只对 `table-cell` 以及 `inline-element` 起作用，对于块级元素不起作用，`vertical-align` 的值是相对于其父元素的，父元素必须是行内元素。
 
@@ -434,7 +443,7 @@ article[data-columns='4'] {
   </div>
   ```
 
-  - flex
+  * flex
 
   ```html
   <style>
@@ -453,7 +462,7 @@ article[data-columns='4'] {
   </div>
   ```
 
-  - transform
+  * transform
 
   ```html
   <style>
@@ -476,9 +485,9 @@ article[data-columns='4'] {
   </div>
   ```
 
-- 元素高度固定（在这里是子元素高度固定）
+* 元素高度固定（在这里是子元素高度固定）
 
-  - absolute + calc
+  * absolute + calc
 
   ```html
   <style>
@@ -502,7 +511,7 @@ article[data-columns='4'] {
   </div>
   ```
 
-  - absolute + margin-top
+  * absolute + margin-top
 
   ```html
   <style>
@@ -528,9 +537,9 @@ article[data-columns='4'] {
 
 <div class="dividing-line"></div>
 
-> 水平居中
+### 水平居中
 
-- 行内元素
+* 行内元素
 
 给其父元素设置 `text-align:center` ，即可实现行内元素水平居中。
 
@@ -545,9 +554,9 @@ article[data-columns='4'] {
 </div>
 ```
 
-- 块级元素
+* 块级元素
 
-  - 定宽元素
+  * 定宽元素
 
     1. `margin: 0 auto`
 
@@ -556,19 +565,19 @@ article[data-columns='4'] {
       .common {
         background: #00abff;
       }
-    
+
       #demo2 {
         width: 100px;
         margin: 0 auto;
       }
     </style>
-    
+
     <div id="demo2" class="common">
         demo 2
     </div>
     ```
 
-    1. absolute + 负margin
+    2. absolute + 负margin
 
     ```html
     <style>
@@ -587,7 +596,7 @@ article[data-columns='4'] {
     </div>
     ```
 
-    1. absolute + `margin: auto`
+    3. absolute + `margin: auto`
 
     ```html
     <style>
@@ -607,7 +616,7 @@ article[data-columns='4'] {
     </div>
     ```
 
-  - 不定宽元素
+  * 不定宽元素
 
     1. flex
 
@@ -627,7 +636,7 @@ article[data-columns='4'] {
     </div>
     ```
 
-    1. transform
+    2. transform
 
     ```html
     <style>
@@ -645,7 +654,7 @@ article[data-columns='4'] {
     </div>
     ```
 
-    1. grid + justify-content
+    3. grid + justify-content
 
     ```html
     <style>
@@ -663,7 +672,7 @@ article[data-columns='4'] {
     </div>
     ```
 
-    1. grid + justify-slef
+    4. grid + justify-slef
 
     ```html
     <style>
@@ -693,7 +702,7 @@ article[data-columns='4'] {
 
 <div class="dividing-line"></div>	
 
-> CSS画圆、三角形和梯形
+### CSS画圆、三角形和梯形
 
 圆：宽高相等，border的圆角是宽高的一半。
 
@@ -736,7 +745,7 @@ article[data-columns='4'] {
 
 <div class="dividing-line"></div>	
 
-> 自适应16：9的矩形
+### 自适应16：9的矩形
 
 用`padding`占位：
 
@@ -763,13 +772,13 @@ article[data-columns='4'] {
 
 <div class="dividing-line"></div>	
 
-> flex布局
+### flex布局
 
 容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做`main start`，结束位置叫做`main end`；交叉轴的开始位置叫做`cross start`，结束位置叫做`cross end`。
 
-![20181005153874309688967.png](http://ofx4ie5iq.bkt.clouddn.com/20181005153874309688967.png)
+![20181005153874309688967.png](/assets/images/前端常见知识点总结/20181005153874309688967.png)
 
-- 容器属性
+* 容器属性
 
 `flex-direction`：决定主轴的方向（即项目的排列方向）。
 
@@ -783,7 +792,7 @@ article[data-columns='4'] {
 
 `align-content`：定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
 
-- 项目属性
+* 项目属性
 
 `order`：定义项目的排列顺序。数值越小，排列越靠前，默认为0。
 
@@ -803,7 +812,7 @@ article[data-columns='4'] {
 
 <div class="dividing-line"></div>	
 
-> 清除浮动
+### 清除浮动
 
 当父级元素中的子元素全部浮动后，会导致父元素的高度坍塌，从而影响父元素的布局，所以需要通过清除浮动将父元素的高度撑起来。
 
@@ -839,9 +848,9 @@ article[data-columns='4'] {
 <div class="bottomDiv">...</div>
 ```
 
-![20181003153849669213606.png](http://ofx4ie5iq.bkt.clouddn.com/20181003153849669213606.png)
+![20181003153849669213606.png](/assets/images/前端常见知识点总结/20181003153849669213606.png)
 
-- clear
+* clear
 
 在浮动元素的父级元素末尾插入了一个没有内容的**块级元素**，并且定义他们的`clear`的样式。
 
@@ -882,9 +891,9 @@ article[data-columns='4'] {
 <div class="bottomDiv">...</div>
 ```
 
-![20181003153849841624036.png](http://ofx4ie5iq.bkt.clouddn.com/20181003153849841624036.png)
+![20181003153849841624036.png](/assets/images/前端常见知识点总结/20181003153849841624036.png)
 
-- 伪元素
+* 伪元素
 
 ```html
 <style>
@@ -924,9 +933,9 @@ article[data-columns='4'] {
 <div class="bottomDiv">...</div>
 ```
 
-![20181003153849841624036.png](http://ofx4ie5iq.bkt.clouddn.com/20181003153849841624036.png)
+![20181003153849841624036.png](/assets/images/前端常见知识点总结/20181003153849841624036.png)
 
-- overflow
+* overflow
 
 在父级元素上添加了一个值为`auto`的`overflow`属性，构件了一个BFC（块格式化上下文），从而父元素的高度立即被撑起，将浮动元素包裹在内。在这里`overflow`可以是除`visible`外任何有效值，不过`overflow: auto;`对SEO友好一点。
 
@@ -963,7 +972,7 @@ article[data-columns='4'] {
 <div class="bottomDiv">...</div>
 ```
 
-![20181003153849841624036.png](http://ofx4ie5iq.bkt.clouddn.com/20181003153849841624036.png)
+![20181003153849841624036.png](/assets/images/前端常见知识点总结/20181003153849841624036.png)
 
 扩展阅读：
 
@@ -971,7 +980,7 @@ article[data-columns='4'] {
 
 <div class="dividing-line"></div>	
 
-> BFC
+### BFC
 
 浮动元素和绝对定位元素，非块级盒子的块级容器（例如` inline-blocks`, `table-cells`, 和 `table-captions`），以及`overflow`值不为`visiable`的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）。
 
@@ -979,24 +988,33 @@ BFC中的元素的布局是不受外界的影响（我们往往利用这个特�
 
 满足下列条件之一就可以触发BFC：
 
-- 根元素，即HTML元素
-- `float`的值不为`none`
-- `overflow`的值不为`visible`
-- `display`的值为`inline-block`、`table-cell`、`table-caption`
-- `position`的值为`absolute`或`fixed`
+* 根元素，即HTML元素
+
+* `float`的值不为`none`
+
+* `overflow`的值不为`visible`
+
+* `display`的值为`inline-block`、`table-cell`、`table-caption`
+
+* `position`的值为`absolute`或`fixed`
 
 BFC布局规则：
 
-- 内部的Box会在垂直方向，一个接一个地放置。
-- Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠。
-- 每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。
-- BFC的区域不会与float box重叠。
-- BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
-- 计算BFC的高度时，浮动元素也参与计算。
+* 内部的Box会在垂直方向，一个接一个地放置。
+
+* Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠。
+
+* 每个元素的margin box的左边， 与包含块border box的左边相接触(对于从左往右的格式化，否则相反)。即使存在浮动也是如此。
+
+* BFC的区域不会与float box重叠。
+
+* BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素。反之也如此。
+
+* 计算BFC的高度时，浮动元素也参与计算。
 
 BFC的作用：
 
-- 解决margin叠加问题
+* 解决margin叠加问题
 
 ```html
 <style>
@@ -1013,7 +1031,7 @@ BFC的作用：
 <div class="common">...</div>
 ```
 
-![20181003153856707350087.png](http://ofx4ie5iq.bkt.clouddn.com/20181003153856707350087.png)
+![20181003153856707350087.png](/assets/images/前端常见知识点总结/20181003153856707350087.png)
 
 上面两个`div`元素发生了外边距折叠，两个`div`之间的`margin`是`50px`而不是`100px`，如果想让两个元素之间是`100px`，可以新建一个BFC：
 
@@ -1037,9 +1055,9 @@ BFC的作用：
 <div class="common">...</div>
 ```
 
-![20181003153856946466472.png](http://ofx4ie5iq.bkt.clouddn.com/20181003153856946466472.png)
+![20181003153856946466472.png](/assets/images/前端常见知识点总结/20181003153856946466472.png)
 
-- 用于布局
+* 用于布局
 
 下面代码中`aside`创建了一个BFC，由于BFC的左外边距会触碰到包含块容器的左外边框，即使存在浮动也是如此，所以`main`和`aside`的左外边距都会触碰到包含块容器的左外边框。
 
@@ -1060,7 +1078,7 @@ BFC的作用：
 <div class="main"></div>
 ```
 
-![2018100315385750616798.png](http://ofx4ie5iq.bkt.clouddn.com/2018100315385750616798.png)
+![2018100315385750616798.png](/assets/images/前端常见知识点总结/2018100315385750616798.png)
 
 要解决这个问题，可以给`main`创建一个BFC，这样利用BFC的区域不会与float box重叠的特性完成一个两栏布局：
 
@@ -1083,9 +1101,9 @@ BFC的作用：
 <div class="main"></div>
 ```
 
-![20181003153857514010502.png](http://ofx4ie5iq.bkt.clouddn.com/20181003153857514010502.png)
+![20181003153857514010502.png](/assets/images/前端常见知识点总结/20181003153857514010502.png)
 
-- 清除浮动
+* 清除浮动
 
 清除浮动有一个方法是添加`overflow`属性，这就是利用BFC的计算高度包括浮动元素的特性。
 
@@ -1099,28 +1117,28 @@ BFC的作用：
 
 <div class="dividing-line"></div>	
 
-> CSS外边距合并（margin collapsing）
+### CSS外边距合并（margin collapsing）
 
 块级元素的上外边距（margin-top）和下外边距（margin-bottom）有时会合并（或折叠）为一个外边距，其大小取其中的最大者，这种行为称为**外边距折叠**（margin collapsing）。
 
 下面列出了会发生外边距折叠的三种基本情况：
 
-- 相邻元素之间
+* 相邻元素之间
 
   毗邻的两个元素之间的外边距会折叠（除非后一个元素需要清除之前的浮动）。
 
-- 父元素与其第一个或最后一个子元素之间
+* 父元素与其第一个或最后一个子元素之间
   如果在父元素与其第一个子元素之间不存在边框、内边距、行内内容，也没有创建块格式化上下文、或者清除浮动将两者的 margin-top 分开；或者在父元素与其最后一个子元素之间不存在边框、内边距、行内内容、height、min-height、max-height将两者的 margin-bottom 分开，那么这两对外边距之间会产生折叠。此时子元素的外边距会“溢出”到父元素的外面。
 
-- 空的块级元素
+* 空的块级元素
   如果一个块级元素中不包含任何内容，并且在其 margin-top 与 margin-bottom 之间没有边框、内边距、行内内容、height、min-height 将两者分开，则该元素的上下外边距会折叠。
 
 一些需要注意的地方：
 
-- 上述情况的组合会产生更复杂的外边距折叠。
-- 即使某一外边距为0，这些规则仍然适用。因此就算父元素的外边距是0，第一个或最后一个子元素的外边距仍然会“溢出”到父元素的外面。
-- 如果参与折叠的外边距中包含负值，折叠后的外边距的值为最大的正边距与最小的负边距（即绝对值最大的负边距）的和。
-- 如果所有参与折叠的外边距都为负，折叠后的外边距的值为最小的负边距的值。这一规则适用于相邻元素和嵌套元素。
+* 上述情况的组合会产生更复杂的外边距折叠。
+* 即使某一外边距为0，这些规则仍然适用。因此就算父元素的外边距是0，第一个或最后一个子元素的外边距仍然会“溢出”到父元素的外面。
+* 如果参与折叠的外边距中包含负值，折叠后的外边距的值为最大的正边距与最小的负边距（即绝对值最大的负边距）的和。
+* 如果所有参与折叠的外边距都为负，折叠后的外边距的值为最小的负边距的值。这一规则适用于相邻元素和嵌套元素。
 
 如何避免：
 
@@ -1145,7 +1163,7 @@ BFC的作用：
 
 <div class="dividing-line"></div>	
 
-> 移动端适配
+### 移动端适配
 
 **物理像素(physical pixel)**
 
@@ -1169,7 +1187,6 @@ CSS像素是一个抽像的单位，主要使用在浏览器上，用来精确�
 
 ```
 设备像素比 ＝ 物理像素 / 设备独立像素
-
 ```
 
 在JavaScript中，可以通过`window.devicePixelRatio`获取到当前设备的dpr。而在CSS中，可以通过`-webkit-device-pixel-ratio`，`-webkit-min-device-pixel-ratio`和 `-webkit-max-device-pixel-ratio`进行媒体查询，对不同dpr的设备，做一些样式适配(这里只针对webkit内核的浏览器和webview)。
@@ -1178,12 +1195,14 @@ dip或dp,（device independent pixels，设备独立像素）与屏幕密度有�
 
 在不同的屏幕上，CSS像素所呈现的物理尺寸是一致的，而不同的是CSS像素所对应的物理像素具数是不一致的。在普通屏幕下`1`个CSS像素对应`1`个物理像素，而在Retina屏幕下，`1`个CSS像素对应的却是`4`个物理像素。
 
-- viewport
+* viewport
 
 Flexible通过JS来动态改写`meta`标签：
 
 1. 动态改写`<meta>`标签
+
 2. 给`<html>`元素添加`data-dpr`属性，并且动态改写`data-dpr`的值
+
 3. 给`<html>`元素添加`font-size`属性，并且动态改写`font-size`的值
 
 其他尺寸通过下面scss函数将`px`转化为`rem`：
@@ -1216,7 +1235,7 @@ Flexible通过JS来动态改写`meta`标签：
 }
 ```
 
-- vm配合rem
+* vm配合rem
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1280,7 +1299,7 @@ body {
 
 ## JavaScript
 
-> JavaScript的数据类型
+### JavaScript的数据类型
 
 6种简单数据类型（也称为基本数据类型）：`Undefined`、`Null`、`Boolean`、`Number`、`String`、`Symbol`
 
@@ -1288,18 +1307,19 @@ body {
 
 <p id="div-border-left-green">`null`被认为是一个空对象的引用，使用`typeOf`操作符会返回`Object`，所以类型判断时通常用`Object.prototype.toString.call()`去判断，比如: `Object.prototype.toString.call('1') === "[object String]"`</p>
 
+
 <div class="dividing-line"></div>	
 
-> `==` 和 `===` 的区别
+### `==` 和 `===` 的区别
 
 `==`操作符会先进行类型转换再进行比较，类型转换按照一下规则进行：
 
-- 如果有一个操作数是布尔值，则在比较相等性之前先将其转换为数值（`false`转换成`0`，`true`转换成`1`）
-- 如果一个操作数是字符串，另一个操作数是数值，在比较前先将字符串转换为数值
-- 如果是对象，调用对象的`valueOf()`方法得到基本类型后按第一条规则再进行比较
-- `null`和`undefined`相等（`undefined`值派生自`null`值）
-- 两个都是对象，比较它们是不是指向同一个对象
-- 两边有一个是`NaN`，`==`返回`false`，`!=`返回`true`（`Nan`不等于`NaN`）
+* 如果有一个操作数是布尔值，则在比较相等性之前先将其转换为数值（`false`转换成`0`，`true`转换成`1`）
+* 如果一个操作数是字符串，另一个操作数是数值，在比较前先将字符串转换为数值
+* 如果是对象，调用对象的`valueOf()`方法得到基本类型后按第一条规则再进行比较
+* `null`和`undefined`相等（`undefined`值派生自`null`值）
+* 两个都是对象，比较它们是不是指向同一个对象
+* 两边有一个是`NaN`，`==`返回`false`，`!=`返回`true`（`Nan`不等于`NaN`）
 
 `===`操作符在比较前不会进行类型转换，是严格相等，注意`undefined  === null` 返回`false`。
 
@@ -1319,7 +1339,7 @@ body {
 
  <div class="dividing-line"></div>
 
-> BOM是什么，有哪些BOM对象
+### BOM是什么，有哪些BOM对象
 
 BOM（Browser Object Model）是浏览器对象模型的缩写，它提供了独立于内容而与浏览器窗口进行交互的对象，并且每个对象都提供了很多方法与属性。
 
@@ -1327,9 +1347,9 @@ BOM对象包括：window对象、location对象、navigation对象、screen对�
 
 <div class="dividing-line"></div>	
 
-> 创建对象的三种方法
+### 创建对象的几种方法
 
-- 字面量
+* 字面量
 
 ```javascript
 var o = {
@@ -1337,7 +1357,7 @@ var o = {
 };
 ```
 
-- 构造函数
+* 构造函数
 
 ```javascript
 var o1 = new Object({name: 'tc9011'});
@@ -1355,7 +1375,7 @@ function Human(firstName, lastName) {
 var tc = new Human('t', 'c');
 ```
 
-- `Object.create`
+* `Object.create`
 
 ```javascript
 const person = {
@@ -1365,7 +1385,7 @@ const person = {
 const me = Object.create(person);
 ```
 
-- 工厂模式
+* 工厂模式
 
 ```javascript
 function createPerson(name, age, job){
@@ -1385,7 +1405,7 @@ console.log(person1.name);                    // tc
 console.log(person2.name);                    // zj
 ```
 
-- 原型模式
+* 原型模式
 
 ```javascript
 function Human() {}
@@ -1401,7 +1421,7 @@ console.log(p1.lastName);                     // c
 p1.fullName();                                // t c
 ```
 
-- 组合模式
+* 组合模式
 
 ```javascript
 function Person(name, age, job) {
@@ -1425,9 +1445,13 @@ console.log(person1.friends === person2.friends);  //false
 console.log(person1.sayName === person2.sayName);  //true
 ```
 
+扩展阅读：
+
+[JavaScript深入之创建对象的多种方式以及优缺点](https://github.com/mqyqingfeng/Blog/issues/15)
+
 <div class="dividing-line"></div>	
 
-> 当new Foo()时发生了什么
+### 当new Foo()时发生了什么
 
 1. 创建一个新对象
 2. 将新创建的空对象的`_proto_`指向其构造函数`Foo`的原型
@@ -1435,11 +1459,27 @@ console.log(person1.sayName === person2.sayName);  //true
 4. 执行构造函数中的代码（为这个新对象添加属性）
 5. 返回新对象
 
+```javascript
+new Person("John") = {
+    var obj = {};
+	obj.__proto__ = Person.prototype; // 此时便建立了obj对象的原型链：
+	// obj->Person.prototype->Object.prototype->null
+	var result = Person.call(obj,"John"); // 相当于obj.Person("John")
+	return typeof result === 'object' ? result : obj; // 如果无返回值或者返回一个非对象值，则将obj返回作为新对象
+}
+```
+
+扩展阅读：
+
+[new创建对象的过程发生了什么](https://alexzhong22c.github.io/2017/08/12/js-new-happen/)
+
+[JavaScript深入之new的模拟实现](https://github.com/mqyqingfeng/Blog/issues/13)
+
  <div class="dividing-line"></div>
 
-> let 和 const
+### let 和 const
 
-- let
+* let
 
 `let`用来声明变量，但所声明的变量只在`let`命令所在的代码块中有效（`let`的作用域是块，而`var`的作用域是函数）：
 
@@ -1491,7 +1531,7 @@ if (true) {
 }
 ```
 
-- const
+* const
 
 `const`声明一个只读的常量。一旦声明，常量的值就不能改变。`const`一旦声明变量，就必须立即初始化，不能留到以后赋值。
 
@@ -1518,7 +1558,7 @@ console.log(person.name);               // tc9011
 
 <div class="dividing-line"></div>
 
-> arguments
+### arguments
 
 `arguments`对象是所有（非箭头）函数中都可用的**局部变量**。你可以使用`arguments`对象在函数中引用函数的参数。此对象包含传递给函数的每个参数，第一个参数在索引0处。
 
@@ -1550,7 +1590,7 @@ f('1', '2');
 
 <div class="dividing-line"></div>
 
-> JavaScript作用域链
+### JavaScript作用域链
 
 全局执行环境是最外围的一个执行环境。在web浏览器中，全局执行环境被认为是window对象。因此所有全局变量和函数都是作为window对象的属性和方法创建的。
 
@@ -1566,7 +1606,7 @@ f('1', '2');
 
 <div class="dividing-line"></div>
 
-> 什么是闭包
+### 什么是闭包
 
 闭包是指有权访问另一个函数作用域中的变量的**函数**。创建闭包的常见方式，就是在一个函数内部创建另一个函数：
 
@@ -1586,13 +1626,14 @@ baz();						// 0
 构成闭包的必要条件有两个：
 
 1. 函数内部有函数（`foo`函数中有`bar`）
+
 2. 外部函数的局部变量被内部函数引用（`a`被`bar`函数引用）
 
 闭包本质源自两点，词法作用域和函数当作值传递。当函数可以记住并访问所在的词法作用域，并在当前词法作用域之外执行，就产生了闭包。
 
 闭包有下面三种常见形式：
 
-- 调用函数里面的函数
+* 调用函数里面的函数
 
 ```javascript
 function foo() {
@@ -1607,7 +1648,7 @@ var baz = foo();
 baz();						// 0
 ```
 
-- 回调函数
+* 回调函数
 
 ```javascript
 function foo() {
@@ -1637,7 +1678,7 @@ function setTimeout(fn, delay) {
 }
 ```
 
-- 对象
+* 对象
 
 ```javascript
 function coolModule() {
@@ -1664,7 +1705,7 @@ foo.doSomething();                              // cool
 foo.doAnother();                                // 1 ! 2 ! 3
 ```
 
-- IIFE(立即执行函数表达式)方式
+* IIFE(立即执行函数表达式)方式
 
 严格来说它并不是闭包，因为它并不是在本身词法作用域以外执行的。`a`是通过普通词法作用域查找发现的，而不是闭包。
 
@@ -1749,7 +1790,7 @@ for (var i = 1; i < 5; i++) {
 
 <div class="dividing-line"></div>	
 
-> 原型和原型链
+### 原型和原型链
 
 每个实例对象（object ）都有一个私有属性（称之为 `__proto__`）指向它的原型对象（**prototype**）。该原型对象也有一个自己的原型对象 ，层层向上直到一个对象的原型对象为 `null`。根据定义，`null` 没有原型，并作为这个**原型链**中的最后一个环节。
 
@@ -1763,7 +1804,7 @@ for (var i = 1; i < 5; i++) {
 
 举个例子： 
 
-![20170703149909094932124.png](http://ofx4ie5iq.bkt.clouddn.com/20170703149909094932124.png)
+![20170703149909094932124.png](/assets/images/前端常见知识点总结/20170703149909094932124.png)
 
 从上图可以看出`person1`和`person2`的构造函数是是`Person`，也就是：
 
@@ -1810,9 +1851,9 @@ console.log(instance.getSuperValue());	//true
 
 <div class="dividing-line"></div>	
 
-> JavaScript的继承
+### JavaScript的继承
 
-- 原型链继承
+* 原型链继承
 
 通过重写原型对象，代之以一个新类型的实例，来扩展原型搜索机制，从而实现继承：
 
@@ -1875,11 +1916,11 @@ var son2 = new Son();
 console.log(son2.card.bank);                    // BOC
 ```
 
-1. 在创建子类型的实例时，不能向父类型的构造函数中传递参数
+2. 在创建子类型的实例时，不能向父类型的构造函数中传递参数
 
 因此实践中很少会单独使用原型链。
 
-- 借助构造函数继承（经典继承）
+* 借助构造函数继承（经典继承）
 
 通过使用`apply()`和`call()`方法在新创建的对象上执行构造函数。
 
@@ -1918,7 +1959,7 @@ console.log(son2.card.bank);                        // 'ICBC'
 
 所以借用构造函数的技术也很少单独使用。
 
-- 组合继承
+* 组合继承
 
 使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。
 
@@ -1967,7 +2008,7 @@ console.log(son2.card.bank);                            // ICBC
 
 是 JavaScript 中最常用的继承模式。
 
-- 原型式继承
+* 原型式继承
 
 通过`Object.create()`实现继承。
 
@@ -1998,7 +2039,7 @@ console.log(person.friend);	           // [ "a", "b", "c", "d", "e" ]
 
 1. 引用类型的属性被所有实例共享
 
-- 寄生式继承
+* 寄生式继承
 
 通过创建一个用于封装继承过程的函数来实现继承，该函数内部以某种方式（不一定是使用下面的`Object.create()`）来增强对象，最后返回该对象。
 
@@ -2026,7 +2067,7 @@ anotherPerson.sayHi();			                          // hi
 
 在主要考虑对象的情况下，可以使用寄生式继承。
 
-- 寄生组合式继承
+* 寄生组合式继承
 
 通过借用构造函数来继承属性，通过原型链的混成形式来继承方法。本质上，就是使用寄生式继承来继承父类型的原型，然后再将结果指定给子类型的原型。
 
@@ -2072,13 +2113,13 @@ son.sayName();                           // a
 
 <div class="dividing-line"></div>	
 
-> JavaScript中的this
+### JavaScript中的this
 
 `this`是函数运行时，在函数体内部自动生成的一个对象，只能在函数体内部使用。
 
 `this`总是指向调用它的对象，通过`apply()`和`call()`可以手动改变`this`的指向。
 
-- 纯函数调用
+* 纯函数调用
 
   `this`代表全局对象`window`或`global`(在node中)，下面的`bar()`的调用可以看成`window.bar()`或者`global.bar()`(在node中)：
 
@@ -2090,7 +2131,7 @@ function bar() {
 bar();                          // 1
 ```
 
-- 作为对象的方法调用
+* 作为对象的方法调用
 
 `this`指向调用它的对象。
 
@@ -2110,7 +2151,7 @@ o.sayHi();
 // true
 ```
 
-- 作为构造函数调用
+* 作为构造函数调用
 
 `this`指向构造函数生成的对象。
 
@@ -2126,7 +2167,7 @@ console.log(a.name);                                 // tc9011
 console.log(this.name);                              // tc
 ```
 
-- `apply`或`call`调用
+* `apply`或`call`调用
 
 `apply()`和`call()`作用都是改变函数的调用对象（两者的区别在于第一参数后面的接受参数的形式，`call()`方法接受的是若干个参数的列表，而`apply()`方法接受的是一个包含多个参数的数组。）。它们的第一个参数就表示改变后的调用这个函数的对象。因此，这时`this`指的就是这第一个参数。
 
@@ -2166,15 +2207,17 @@ var id = 21;
 foo.call({id: 42});                 // id: 42
 ```
 
+<p id="div-border-left-green">call和apply改变了函数的this上下文后便执行该函数,而bind则是返回改变了上下文后的一个函数。</p>
+
 <div class="dividing-line"></div>	
 
-> 深拷贝与浅拷贝
+### 深拷贝与浅拷贝
 
 浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。
 
 深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。
 
-- 浅拷贝
+* 浅拷贝
 
 ```javascript
 // shallow copy in the array
@@ -2210,7 +2253,7 @@ var b = shallowCopy(a);
 console.log(b);                       // { name: 'a' }
 ```
 
-- 深拷贝
+* 深拷贝
 
 ```javascript
 // 通过递归实现深拷贝，但是没有办法处理源对象内部循环引用的问题，同时对Date，Funcion等类型值也没有实现真正的深度复制，但是这些类型的值在重新定义的时候一般都是直接覆盖，所以也不会对源对象产生影响，从一定程度上来说也算是实现了一个深拷贝。
@@ -2309,7 +2352,7 @@ console.log(o1);                            // { arr: [ 1, 2, 3 ], obj: { key: '
 
 <div class="dividing-line"></div>	
 
-> 事件循环
+### 事件循环
 
 js引擎遇到一个异步事件后并不会一直等待其返回结果，而是会将这个事件挂起，继续执行执行栈中的其他任务。当一个异步事件返回结果后，js会将这个事件加入与当前执行栈不同的另一个队列，我们称之为事件队列。被放入事件队列不会立刻执行其回调，而是等待当前执行栈中的所有任务都执行完毕， 主线程处于闲置状态时，主线程会去查找事件队列是否有任务。如果有，那么主线程会从中取出排在第一位的事件，并把这个事件对应的回调放入执行栈中，然后执行其中的同步代码...，如此反复，这样就形成了一个无限的循环。这就是“事件循环（Event Loop）”。
 
@@ -2337,7 +2380,7 @@ console.log('Welcome to loupe.');
 // You clicked the button!
 ```
 
-![20180923153763764873676.gif](http://ofx4ie5iq.bkt.clouddn.com/20180923153763764873676.gif)
+![20180923153763764873676.gif](/assets/images/前端常见知识点总结/20180923153763764873676.gif)
 
 
 
@@ -2358,7 +2401,7 @@ new Promise(function (resolve, reject) {
 // 1
 ```
 
-![20180923153763681535221.gif](http://ofx4ie5iq.bkt.clouddn.com/20180923153763681535221.gif)
+![20180923153763681535221.gif](/assets/images/前端常见知识点总结/20180923153763681535221.gif)
 
 不同的异步任务被分为两类：微任务（micro task）和宏任务（macro task）。
 
@@ -2372,6 +2415,7 @@ new Promise(function (resolve, reject) {
 以下事件属于微任务
 
 - `process.nextTick`
+
 - `new Promise()`
 - `MessageChannel`
 
@@ -2410,13 +2454,13 @@ console.log(5);
 
 <div class="dividing-line"></div>	
 
-> 事件流
+### 事件流
 
 事件流描述的是从页面中接收事件的顺序。
 
 DOM2级事件中`addEventListener()`接收3个参数：要处理的事件名、作为事件处理程序的函数和一个布尔值。当这个布尔值为`true`时，表示在捕获阶段调用事件处理程序；若果是`false`，表示在冒泡阶段调用事件处理程序。
 
-- 事件冒泡
+* 事件冒泡
 
 IE的事件流叫做事件冒泡，即事件开始时由最具体的元素接收，然后逐级向上传播到较为不具体的节点（文档）。
 
@@ -2475,13 +2519,13 @@ IE的事件流叫做事件冒泡，即事件开始时由最具体的元素接收
 </html>
 ```
 
-![20180923153768471599975.gif](http://ofx4ie5iq.bkt.clouddn.com/20180923153768471599975.gif)
+![20180923153768471599975.gif](/assets/images/前端常见知识点总结/20180923153768471599975.gif)
 
 当点击页面中心白色的部分时，先是弹出123，接着弹出456，最后弹出789。因此当容器元素及其嵌套元素都在冒泡阶段调用事件处理程序时：事件按事件冒泡的顺序执行事件处理程序。
 
 所有浏览器都支持事件冒泡，但在具体实现上还有一些差别。IE9、Firefox、Chrome和Safari则将事件一直冒泡到`window`对象。
 
-- 事件捕获
+* 事件捕获
 
 Netscape Communicator的事件流是事件捕获流。事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。事件捕获的用意在于在事件到达预定目标之前捕获它。
 
@@ -2540,7 +2584,7 @@ Netscape Communicator的事件流是事件捕获流。事件捕获的思想是�
 </html>
 ```
 
-![20180923153768522611218.gif](http://ofx4ie5iq.bkt.clouddn.com/20180923153768522611218.gif)
+![20180923153768522611218.gif](/assets/images/前端常见知识点总结/20180923153768522611218.gif)
 
 当点击页面中心白色的部分时，先是弹出wrap，接着弹出outer，最后弹出inner。因此当容器元素及其嵌套元素都在捕获阶段调用事件处理程序时：事件按事件捕获的顺序执行事件处理程序。
 
@@ -2548,7 +2592,7 @@ IE9、Safari、Chrome、Opera和Firefox也都支持这种事件流模型。尽�
 
 建议放心地使用事件冒泡，在有特殊需要的时候再使用事件捕获。
 
-- DOM事件流
+* DOM事件流
 
 当同一个元素即在冒泡阶段注册了事件，又在捕获阶段注册了同一事件，那么当事件被触发时，事件的执行顺序又会是如何的？这就涉及到DOM事件流。
 
@@ -2556,7 +2600,7 @@ DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于�
 
 首先发生的是事件捕获，为截获事件提供了机会。然后是实际的目标接收到事件。最后一个阶段是冒泡阶段，可以在这个阶段对事件做出响应。
 
-![](http://ofx4ie5iq.bkt.clouddn.com/20170911150514406098380.png)
+![](/assets/images/前端常见知识点总结/20170911150514406098380.png)
 
 在DOM事件流中，实际的目标在捕获阶段不会接收到事件。这意味着在捕获阶段，事件从`document`到`<html>`再到`<body>`后就停止了。下一个阶段是处于目标阶段，于是事件再`<div>`上发生，**并在事件处理中被看成冒泡阶段的一部分**。然后，冒泡阶段发生，事件又传播回文档。
 
@@ -2626,11 +2670,11 @@ DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于�
 </html>
 ```
 
-![20180923153768647123475.gif](http://ofx4ie5iq.bkt.clouddn.com/20180923153768647123475.gif)
+![20180923153768647123475.gif](/assets/images/前端常见知识点总结/20180923153768647123475.gif)
 
 <div class="dividing-line"></div>	
 
-> target 和 currentTarget
+### target 和 currentTarget
 
 `target`：指向触发事件监听的对象。
 
@@ -2668,7 +2712,7 @@ DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于�
 
 <div class="dividing-line"></div>	
 
-> 事件委托
+### 事件委托
 
 事件委托利用了事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。
 
@@ -2707,11 +2751,11 @@ DOM2级事件规定的事件流包括三个阶段：事件捕获阶段、处于�
 
 <div class="dividing-line"></div>	
 
-> JavaScript跨域通信
+### JavaScript跨域通信
 
 JavaScript进行DOM操作、通信时如果目标与当前窗口不满足同源条件，浏览器为了安全会阻止跨域操作。常见的跨域解决方案有以下几种：
 
-- JSONP
+* JSONP
 
 JSONP是JSON with padding（填充式JSON或参数式JSON）的简写，是应用JSON的一种方法。JSONP由两部分组成：回调函数和数据。
 
@@ -2732,7 +2776,7 @@ todo({"name": "tc9011"});
 
 JSONP只能实现GET请求。
 
-- CORS
+* CORS
 
 CORS（`Cross-Origin Resource Sharing`，跨源资源共享）定义了在必须访问跨源资源时，浏览器与服务器如何沟通。CORS背后的基本思想，就是使用自定义的HTTP头部让浏览器与服务器进行沟通，从而决定请求或响应是应该成功，还是失败。
 
@@ -2752,7 +2796,7 @@ Access-Control-Allow-Origin: http://tc9011.com
 
 CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。
 
-- HTML5跨文档消息传递(XDM)
+* HTML5跨文档消息传递(XDM)
 
 window.postMessage() 方法可以安全地实现跨源通信。
 
@@ -2794,28 +2838,29 @@ window.addEventListener("message", receiveMessageFromIndex, false);
 
 <div class="dividing-line"></div>	
 
-> sessionStorage ，localStorage 和 cookie 的区别
+### sessionStorage ，localStorage 和 cookie 的区别
 
-|      特性      |                            Cookie                            |                    localStorage                    |                   sessionStorage                   |
-| :------------: | :----------------------------------------------------------: | :------------------------------------------------: | :------------------------------------------------: |
-|    同源限制    |                              是                              |                         是                         |                         是                         |
-|  数据的生命期  | 一般由服务器生成，可设置失效时间。如果在浏览器端生成Cookie，默认是关闭浏览器后失效 |              除非被清除，否则永久保存              |    仅在当前会话下有效，关闭页面或浏览器后被清除    |
-|  存放数据大小  |                            4K左右                            |                     一般为5MB                      |                     一般为5MB                      |
-| 与服务器端通信 | 每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题 | 仅在客户端（即浏览器）中保存，不参与和服务器的通信 | 仅在客户端（即浏览器）中保存，不参与和服务器的通信 |
+|   特性    |                  Cookie                  |       localStorage        |      sessionStorage       |
+| :-----: | :--------------------------------------: | :-----------------------: | :-----------------------: |
+|  同源限制   |                    是                     |             是             |             是             |
+| 数据的生命期  | 一般由服务器生成，可设置失效时间。如果在浏览器端生成Cookie，默认是关闭浏览器后失效 |       除非被清除，否则永久保存        |  仅在当前会话下有效，关闭页面或浏览器后被清除   |
+| 存放数据大小  |                   4K左右                   |          一般为5MB           |          一般为5MB           |
+| 与服务器端通信 |  每次都会携带在HTTP头中，如果使用cookie保存过多数据会带来性能问题   | 仅在客户端（即浏览器）中保存，不参与和服务器的通信 | 仅在客户端（即浏览器）中保存，不参与和服务器的通信 |
 
 <div class="dividing-line"></div>
 
-> 浏览器渲染原理
+### 浏览器渲染原理
 
 1. 处理 HTML 标记并构建 DOM Tree。
 2. 处理 CSS 标记并构建 CSS Rule Tree 。
+
 3. 解析完成后，浏览器引擎会通过DOM Tree 和 CSS Rule Tree 来构造 Rendering Tree。注意：
 
 Rendering Tree 渲染树并不等同于DOM树，因为一些像Header或display:none的东西就没必要放在渲染树中了。 CSS 的 Rule Tree主要是为了完成匹配并把CSS Rule附加上Rendering Tree上的每个Element。也就是DOM结点。也就是所谓的Frame。 然后，计算每个Frame（也就是每个Element）的位置，这又叫layout和reflow过程。
 
-1. 最后通过调用操作系统Native GUI的API绘制。
+3. 最后通过调用操作系统Native GUI的API绘制。
 
-![2018092415377737946188.png](http://ofx4ie5iq.bkt.clouddn.com/2018092415377737946188.png)
+![2018092415377737946188.png](/assets/images/前端常见知识点总结/2018092415377737946188.png)
 
 扩展阅读：
 
@@ -2827,7 +2872,7 @@ Rendering Tree 渲染树并不等同于DOM树，因为一些像Header或display:
 
 <div class="dividing-line"></div>
 
-> 回流（Reflow）和重绘（Repaint）
+### 回流（Reflow）和重绘（Repaint）
 
 **回流**：当`Render Tree`中部分或全部元素的尺寸、结构、或某些属性发生改变时，浏览器重新渲染部分或全部文档的过程称为回流。
 
@@ -2878,6 +2923,7 @@ Rendering Tree 渲染树并不等同于DOM树，因为一些像Header或display:
 - 避免设置多层内联样式。
 - 将动画效果应用到`position`属性为`absolute`或`fixed`的元素上。
 - 避免使用`CSS`表达式（例如：`calc()`）。
+
 - 避免频繁操作样式，最好一次性重写`style`属性，或者将样式列表定义为`class`并一次性更改`class`属性。
 - 避免频繁操作`DOM`，创建一个`documentFragment`，在它上面应用所有`DOM操作`，最后再把它添加到文档中。
 - 也可以先为元素设置`display: none`，操作结束后再把它显示出来。因为在`display`属性为`none`的元素上进行的`DOM`操作不会引发回流和重绘。
@@ -2890,9 +2936,9 @@ Rendering Tree 渲染树并不等同于DOM树，因为一些像Header或display:
 
 <div class="dividing-line"></div>
 
-> 前端路由的原理
+### 前端路由的原理
 
-- 基于hash（location.hash+hashchange事件）
+* 基于hash（location.hash+hashchange事件）
 
 URL中#及其后面的部分为hash：
 
@@ -2941,7 +2987,7 @@ hash仅仅是客户端的一个状态，也就是说，当向服务器发请求�
 </html>
 ```
 
-- 基于HTML5 History API（history.pushState()+popState事件）
+* 基于HTML5 History API（history.pushState()+popState事件）
 
 通过HTML5中history对象上的`pushState()`方法或`replaceState()`方法可以修改url的地址，并在`popstate`事件中能监听地址的改变，不同的是，手动的进行`pushState()`并不会触发`popstate`事件。
 
@@ -2988,7 +3034,7 @@ hash仅仅是客户端的一个状态，也就是说，当向服务器发请求�
 
 <div class="dividing-line"></div>
 
-> 浏览器缓存
+### 浏览器缓存
 
 浏览器缓存分为强缓存和协商缓存。当客户端请求某个资源时，获取缓存的流程如下：
 
@@ -3036,11 +3082,11 @@ Cache response directives：
 
 无法被浏览器缓存的请求：
 
-- HTTP信息头中包含`Cache-Control:no-cache`，`pragma:no-cache`，或`Cache-Control:max-age=0`等告诉浏览器不用缓存的请求
-- 需要根据Cookie，认证信息等决定输入内容的动态请求是不能被缓存的
-- 经过HTTPS安全加密的请求（有人也经过测试发现，ie其实在头部加入`Cache-Control：max-age`信息，firefox在头部加入`Cache-Control:Public`之后，能够对HTTPS的资源进行缓存，参考《[HTTPS的七个误解](http://www.ruanyifeng.com/blog/2011/02/seven_myths_about_https.html)》）
-- POST请求无法被缓存
-- HTTP响应头中不包含`Last-Modified`/`Etag`，也不包含`Cache-Control`/`Expires`的请求无法被缓存
+* HTTP信息头中包含`Cache-Control:no-cache`，`pragma:no-cache`，或`Cache-Control:max-age=0`等告诉浏览器不用缓存的请求
+* 需要根据Cookie，认证信息等决定输入内容的动态请求是不能被缓存的
+* 经过HTTPS安全加密的请求（有人也经过测试发现，ie其实在头部加入`Cache-Control：max-age`信息，firefox在头部加入`Cache-Control:Public`之后，能够对HTTPS的资源进行缓存，参考《[HTTPS的七个误解](http://www.ruanyifeng.com/blog/2011/02/seven_myths_about_https.html)》）
+* POST请求无法被缓存
+* HTTP响应头中不包含`Last-Modified`/`Etag`，也不包含`Cache-Control`/`Expires`的请求无法被缓存
 
 扩展阅读：
 
@@ -3050,12 +3096,12 @@ Cache response directives：
 
 <div class="dividing-line"></div>
 
-> Promise
+### Promise
 
 Promise 对象有以下两个特点。
 
-- 对象的状态不受外界影响。 Promise 对象代表一个异步操作，有三种状态： `pending` （进行中）、` fulfilled` （已成功）和`rejected `（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。
-- 一旦状态改变，就不会再变，任何时候都可以得到这个结果。 Promise 对象的状态改变，只有两种可能：从 `pending` 变为` fulfilled `和从 `pending` 变为 `rejected `。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为` resolved`（已定型）。如果改变已经发生了，你再对 Promise 对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。
+* 对象的状态不受外界影响。 Promise 对象代表一个异步操作，有三种状态： `pending` （进行中）、` fulfilled` （已成功）和`rejected `（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。
+* 一旦状态改变，就不会再变，任何时候都可以得到这个结果。 Promise 对象的状态改变，只有两种可能：从 `pending` 变为` fulfilled `和从 `pending` 变为 `rejected `。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为` resolved`（已定型）。如果改变已经发生了，你再对 Promise 对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。
 
 Promise 构造函数接受一个函数作为参数，该函数的两个参数分别是 `resolve` 和 `reject` 。它们是两个函数，由 JavaScript 引擎提供，不用自己部署。`resolve` 函数的作用是，将 Promise 对象的状态从“未完成”变为“成功”（即从 `pending` 变为 `resolved`），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；` reject` 函数的作用是，将 Promise 对象的状态从“未完成”变为“失败”（即从 `pending` 变为 `rejected`），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。Promise 实例生成以后，可以用` then `方法分别指定 `resolved `状态和` rejected` 状态的回调函数。注意，调用` resolve` 或 `reject` 并不会终结 Promise 的参数函数的执行。`then` 方法可以接受两个回调函数作为参数。第一个回调函数是 Promise 对象的状态变为 `resolved` 时调用，第二个回调函数是 Promise 对象的状态变为 `rejected` 时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受 Promise 对象传出的值作为参数。
 
@@ -3118,7 +3164,7 @@ getData('./file.txt', 'sample')
 
 <div class="dividing-line"></div>
 
-> Generator 
+### Generator 
 
 Generator 函数有多种理解角度。从语法上，首先可以把它理解成，Generator 函数是一个状态机，封装了多个内部状态。执行 Generator 函数会返回一个遍历器对象，也就是说，Generator 函数除了状态机，还是一个遍历器对象生成函数。返回的遍历器对象，可以依次遍历 Generator函数内部的每一个状态。形式上，Generator 函数是一个普通函数，但是有两个特征。一是， `function `关键字与函数名之间有一个星号；二是，函数体内部使用` yield` 表达式，定义不同的内部状态。
 
@@ -3214,7 +3260,7 @@ result.value.then(function(data){
 
 <div class="dividing-line"></div>
 
-> async 和 await
+### async 和 await
 
 `async`函数就是 Generator 函数的语法糖。
 
@@ -3268,7 +3314,7 @@ function asyncFunc() {
 
 <div class="dividing-line"></div>
 
-> Set 和 Map
+### Set 和 Map
 
 ES6 提供了新的数据结构 Set 和 Map。
 
@@ -3282,7 +3328,7 @@ Map 数据结构。它类似于对象，也是键值对的集合，但是“键�
 
 <div class="dividing-line"></div>
 
-> JS中`prototype`、`__proto__`、`super`t分别是什么
+### JS中`prototype`、`__proto__`、`super`t分别是什么
 
 每个对象都有一个`__proto__`属性，指向对应构造函数的原型对象。
 
@@ -3292,16 +3338,16 @@ Map 数据结构。它类似于对象，也是键值对的集合，但是“键�
 
 `Class`通过`extend`继承后：
 
-- 子类的`__proto__`属性表示构造函数的继承，指向父类
-- 子类的`prototype`属性的`__proto__`属性表示方法的继承，总是指向父类的`prototype`属性
+* 子类的`__proto__`属性表示构造函数的继承，指向父类
+* 子类的`prototype`属性的`__proto__`属性表示方法的继承，总是指向父类的`prototype`属性
 
 在子类中，`super`关键字代表父类实例。子类实例的构建基于对父类实例的加工，只有`super`方法才能返回父类实例。子类没有`this`对象，通过继承父类`this`对象（即`super`），然后对其进行加工。
 
 <div class="dividing-line"></div>
 
-> Web安全
+### Web安全
 
-- XSS
+* XSS
 
 XSS是跨站脚本攻击（Cross-Site Scripting）的简称。它允许恶意web用户将代码植入到提供给其它用户使用的页面中。XSS分为很多种，比较常见的两种是基于反射的 XSS攻击 、基于存储的XSS攻击。
 
@@ -3355,7 +3401,7 @@ Select your language:
 
 
 
-- CSRF
+* CSRF
 
 跨站请求伪造 CSRF（Cross-site request forgery），是一种对网站的恶意利用。CSRF则通过伪装来自受信任用户的请求来利用受信任的网站。
 
@@ -3369,6 +3415,7 @@ Select your language:
 
 - 正确使用 GET，POST 请求和 cookie
 - 在非 GET 请求中增加 token
+
 
 - 为每个用户生成一个唯一的 cookie token，所有表单都包含同一个伪随机值，这种方案最简单，因为攻击者不能获得第三方的 cookie(理论上)，所以表单中的数据也就构造失败，但是由于用户的 cookie 很容易由于网站的 XSS 漏洞而被盗取，所以这个方案必须要在没有 XSS 的情况下才安全。
 - 每个 POST 请求使用验证码，这个方案算是比较完美的，但是需要用户多次输入验证码，用户体验比较差，所以不适合在业务中大量运用。
@@ -3388,7 +3435,7 @@ Select your language:
 
 <div class="dividing-line"></div>
 
-> 尾调用优化
+### 尾调用优化
 
 尾调用指某个函数的最后一步是调用另一个函数。尾调用不一定出现在函数尾部，只要是最后一步操作即可。
 
@@ -3458,7 +3505,7 @@ ES6的尾调用优化只在严格模式下开启，正常模式是无效的。
 
 <div class="dividing-line"></div>
 
-> 柯里化
+### 柯里化
 
 柯里化是一种将使用多个参数的一个函数转换成一系列使用一个参数的函数的技术。
 
@@ -3486,7 +3533,7 @@ const curry = ( fn, arr = []) => (...args) => ( a => a.length === fn.length? fn(
 
 <div class="dividing-line"></div>
 
-> bind()函数的实现
+### bind()函数的实现
 
 `bind()`方法创建一个新的函数， 当这个新函数被调用时其`this`置为提供的值，其参数列表前几项置为创建时指定的参数序列。
 
@@ -3534,17 +3581,21 @@ func();     // 1
 new func(); // foo { b: 100 }
 ```
 
-
-
 参考文章：
 
 [Function.prototype.bind()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 
 [手写bind()函数，理解MDN上的标准Polyfill](https://blog.csdn.net/u010552788/article/details/50850453)
 
+[JavaScript深入之bind的模拟实现](https://github.com/mqyqingfeng/Blog/issues/12)
+
+扩展阅读：
+
+[JavaScript深入之call和apply的模拟实现 ](https://github.com/mqyqingfeng/Blog/issues/11)
+
 <div class="dividing-line"></div>
 
-> 防抖和节流
+### 防抖和节流
 
 **防抖（debounce）**
 
@@ -3597,13 +3648,17 @@ function throttle(fn, interval = 300) {
 
 [函数节流与函数防抖](https://juejin.im/entry/58c0379e44d9040068dc952f)
 
+[JavaScript专题之跟着underscore学防抖](https://github.com/mqyqingfeng/Blog/issues/22)
+
+[JavaScript专题之跟着 underscore 学节流](https://github.com/mqyqingfeng/Blog/issues/26)
+
 <div class="dividing-line"></div>
 
-> CommonJS、AMD和CMD
+### CommonJS、AMD和CMD
 
 三者都是JavaScript模块化的规范。CommonJS是针对后端；AMD和CMD是针对前端。
 
-- CommonJS
+* CommonJS
 
 在CommonJS中，通过`require()`加载模块，`exports`对象用于导出当前模块的方法或变量，是唯一的导出口；`module`对象就代表模块本身。
 
@@ -3615,7 +3670,7 @@ function throttle(fn, interval = 300) {
 
 因此，浏览器端的模块，不能采用"同步加载"（synchronous），只能采用"异步加载"（asynchronous）。这就是AMD规范诞生的背景。
 
-- AMD
+* AMD
 
 AMD是"Asynchronous Module Definition"的缩写，意思就是"异步模块定义"。它采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。
 
@@ -3625,7 +3680,7 @@ define(['dep1','dep2'],function(dep1,dep2){...});
 
 AMD中依赖前置，js可以方便知道依赖模块是谁，立即加载。
 
-- CMD
+* CMD
 
 CMD是 "Common Module Definition" 的缩写， 是seajs推崇的规范，CMD则是依赖就近，用的时候再require。它写起来是这样的：
 
@@ -3641,7 +3696,7 @@ define(function(require,exports,module){...});
 
 <div class="dividing-line"></div>
 
-> ES6模块CommonJS模块的区别
+### ES6模块CommonJS模块的区别
 
 ES6 模块的设计思想，是尽量的静态化，使得编译时就能确定模块的依赖关系，以 及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西。 比如，CommonJS 模块就是对象，输入时必须查找对象属性。
 
@@ -3675,7 +3730,7 @@ import { start, exists, readFile } from 'fs';
 
 <div class="dividing-line"></div>
 
-> clientWidth、offsetWidth和scrollWidth区别
+### clientWidth、offsetWidth和scrollWidth区别
 
 **偏移量**
 
@@ -3686,16 +3741,16 @@ import { start, exists, readFile } from 'fs';
 - `offsetLeft`：元素的左外边框至包含元素的左内边框之间的像素距离
 - `offsetTop`：元素的上边框至包含元素的上内边框之间的像素距离
 
-![](http://ofx4ie5iq.bkt.clouddn.com/20170830150410797377171.png)
+![](/assets/images/前端常见知识点总结/20170830150410797377171.png)
 
 **客户区大小**
 
 元素的客户区大小，指的是元素内容及其内边距所占据的空间大小（注意，**不包括边框**）。
 
-- `clientWidth`属性是元素内容区宽度加上左右内边距宽度；
-- `clientHeight`属性是元素内容区高度加上上下内边距的高度。
+* `clientWidth`属性是元素内容区宽度加上左右内边距宽度；
+* `clientHeight`属性是元素内容区高度加上上下内边距的高度。
 
-![](http://ofx4ie5iq.bkt.clouddn.com/20170831150410922955290.png)
+![](/assets/images/前端常见知识点总结/20170831150410922955290.png)
 
 **滚动大小**
 
@@ -3706,11 +3761,11 @@ import { start, exists, readFile } from 'fs';
 - `scrollLeft`：被隐藏在内容区域左侧的像素数。通过设置这个属性可以改变元素的滚动位置
 - `scrollTop`：被隐藏在内容区域上方的像素数。通过设置这个属性可以改变元素的滚动位置
 
-![](http://ofx4ie5iq.bkt.clouddn.com/20170831150411092878178.png)
+![](/assets/images/前端常见知识点总结/20170831150411092878178.png)
 
 <div class="dividing-line"></div>
 
-> innerHTML 、 innerText 、 outerHTML 和 outerText 区别
+### innerHTML 、 innerText 、 outerHTML 和 outerText 区别
 
 **innerHTML**：从对象的起始位置到终止位置的全部内容,包括Html标签。
 **innerText**：从起始位置到终止位置的内容,但它去除Html标签。
@@ -3788,7 +3843,7 @@ undefined
 
 <div class="dividing-line"></div>	
 
-> Object.assign()
+### Object.assign()
 
 `Object.assign()` 方法用于将所有**可枚举属性**（自有属性）的值从一个或多个源对象复制到目标对象。它将返回目标对象。
 
@@ -3832,7 +3887,7 @@ console.log(object3.a.b);                              // 2
 
 <div class="dividing-line"></div>	
 
-> forEach、Map 和 reduce 的区别
+### forEach、Map 和 reduce 的区别
 
 `forEach()`：对数组的每个元素执行一次提供的函数（不会返回执行结果，只是修改原来的数组）。
 
@@ -3897,10 +3952,10 @@ Array.prototype.reduce= function (fn) {
 
 <div class="dividing-line"></div>	
 
-> 正则表达式
+### 正则表达式
 
-| 字符         | 描述                                                         |
-| ------------ | ------------------------------------------------------------ |
+| 字符           | 描述                                       |
+| ------------ | ---------------------------------------- |
 | \            | 将下一个字符标记为一个特殊字符、或一个原义字符、或一个向后引用、或一个八进制转义符。例如，“`n`”匹配字符“`n`”。“`\n`”匹配一个换行符。串行“`\\`”匹配“`\`”而“`\(`”则匹配“`(`”。 |
 | ^            | 匹配输入字符串的开始位置。如果设置了RegExp对象的Multiline属性，^也匹配“`\n`”或“`\r`”之后的位置。 |
 | $            | 匹配输入字符串的结束位置。如果设置了RegExp对象的Multiline属性，$也匹配“`\n`”或“`\r`”之前的位置。 |
@@ -3926,17 +3981,17 @@ Array.prototype.reduce= function (fn) {
 | \b           | 匹配一个单词边界，也就是指单词和空格间的位置。例如，“`er\b`”可以匹配“`never`”中的“`er`”，但不能匹配“`verb`”中的“`er`”。 |
 | \B           | 匹配非单词边界。“`er\B`”能匹配“`verb`”中的“`er`”，但不能匹配“`never`”中的“`er`”。 |
 | \cx          | 匹配由x指明的控制字符。例如，\cM匹配一个Control-M或回车符。x的值必须为A-Z或a-z之一。否则，将c视为一个原义的“`c`”字符。 |
-| \d           | 匹配一个数字字符。等价于[0-9]。                              |
-| \D           | 匹配一个非数字字符。等价于[^0-9]。                           |
-| \f           | 匹配一个换页符。等价于\x0c和\cL。                            |
-| \n           | 匹配一个换行符。等价于\x0a和\cJ。                            |
-| \r           | 匹配一个回车符。等价于\x0d和\cM。                            |
+| \d           | 匹配一个数字字符。等价于[0-9]。                       |
+| \D           | 匹配一个非数字字符。等价于[^0-9]。                     |
+| \f           | 匹配一个换页符。等价于\x0c和\cL。                     |
+| \n           | 匹配一个换行符。等价于\x0a和\cJ。                     |
+| \r           | 匹配一个回车符。等价于\x0d和\cM。                     |
 | \s           | 匹配任何空白字符，包括空格、制表符、换页符等等。等价于[ \f\n\r\t\v]。 |
-| \S           | 匹配任何非空白字符。等价于[^ \f\n\r\t\v]。                   |
-| \t           | 匹配一个制表符。等价于\x09和\cI。                            |
-| \v           | 匹配一个垂直制表符。等价于\x0b和\cK。                        |
-| \w           | 匹配包括下划线的任何单词字符。等价于“`[A-Za-z0-9_]`”。       |
-| \W           | 匹配任何非单词字符。等价于“`[^A-Za-z0-9_]`”。                |
+| \S           | 匹配任何非空白字符。等价于[^ \f\n\r\t\v]。             |
+| \t           | 匹配一个制表符。等价于\x09和\cI。                     |
+| \v           | 匹配一个垂直制表符。等价于\x0b和\cK。                   |
+| \w           | 匹配包括下划线的任何单词字符。等价于“`[A-Za-z0-9_]`”。      |
+| \W           | 匹配任何非单词字符。等价于“`[^A-Za-z0-9_]`”。          |
 | \xn          | 匹配n，其中n为十六进制转义值。十六进制转义值必须为确定的两个数字长。例如，“`\x41`”匹配“`A`”。“`\x041`”则等价于“`\x04&1`”。正则表达式中可以使用ASCII编码。. |
 | \num         | 匹配num，其中num是一个正整数。对所获取的匹配的引用。例如，“`(.)\1`”匹配两个连续的相同字符。 |
 | \n           | 标识一个八进制转义值或一个向后引用。如果\n之前至少n个获取的子表达式，则n为向后引用。否则，如果n为八进制数字（0-7），则n为一个八进制转义值。 |
@@ -3946,16 +4001,16 @@ Array.prototype.reduce= function (fn) {
 
 常用正则表达式:
 
-| 用户名                  | /^[a-z0-9_-]{3,16}$/                                         |
-| ----------------------- | ------------------------------------------------------------ |
-| 密码                    | /^[a-z0-9_-]{6,18}$/                                         |
-| 十六进制值              | /^#?([a-f0-9]{6}\|[a-f0-9]{3})$/                             |
-| 电子邮箱                | /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$[Math Processing Error]//^[a-z\d]+(\.[a-z\d]+)*@([\da-z](-[\da-z])?)+(\.{1,2}[a-z]+)+$/ |
-| URL                     | /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/ |
-| IP 地址                 | /((2[0-4]\d\|25[0-5]\|[01]?\d\d?)\.){3}(2[0-4]\d\|25[0-5]\|[01]?\d\d?)//^(?:(?:25[0-5]\|2[0-4][0-9]\|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]\|2[0-4][0-9]\|[01]?[0-9][0-9]?)$/ |
-| HTML 标签               | /^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>\|\s+\/>)$/                 |
-| 删除代码\\注释          | (?<!http:\|\S)//.*$                                          |
-| Unicode编码中的汉字范围 | /^[\u2E80-\u9FFF]+$/                                         |
+| 用户名             | /^[a-z0-9_-]{3,16}$/                     |
+| --------------- | ---------------------------------------- |
+| 密码              | /^[a-z0-9_-]{6,18}$/                     |
+| 十六进制值           | /^#?([a-f0-9]{6}\|[a-f0-9]{3})$/         |
+| 电子邮箱            | /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$[Math Processing Error]//^[a-z\d]+(\.[a-z\d]+)*@([\da-z](-[\da-z])?)+(\.{1,2}[a-z]+)+$/ |
+| URL             | /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/ |
+| IP 地址           | /((2[0-4]\d\|25[0-5]\|[01]?\d\d?)\.){3}(2[0-4]\d\|25[0-5]\|[01]?\d\d?)//^(?:(?:25[0-5]\|2[0-4][0-9]\|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]\|2[0-4][0-9]\|[01]?[0-9][0-9]?)$/ |
+| HTML 标签         | /^<([a-z]+)([^<]+)*(?:>(.*)<\/\1>\|\s+\/>)$/ |
+| 删除代码\\注释        | (?<!http:\|\S)//.*$                      |
+| Unicode编码中的汉字范围 | /^[\u2E80-\u9FFF]+$/                     |
 
 参考文章：
 
@@ -3963,7 +4018,7 @@ Array.prototype.reduce= function (fn) {
 
 <div class="dividing-line"></div>	
 
-> Fetch 和 Ajax的区别
+### Fetch 和 Ajax的区别
 
 XMLHttpRequest 是一个设计粗糙的 API，不符合关注分离（Separation of Concerns）的原则，配置和调用方式非常混乱，而且基于事件的异步模型写起来也没有现代的 Promise，generator/yield，async/await 友好。
 
@@ -4013,7 +4068,7 @@ fetch(url)
 
 <div class="dividing-line"></div>	
 
-> node 中的EventEmitter怎么实现功能
+### node 中的EventEmitter怎么实现功能
 
 node 的events模块只提供了一个EventEmitter类，这个类实现了node异步事件驱动架构的基本模式——观察者模式，提供了绑定事件和触发事件等事件监听器模式一般都会提供的API：
 
@@ -4078,14 +4133,164 @@ Subject.prototype = {
 
 <div class="dividing-line"></div>	
 
+
 ## 网络
 
+### 浏览器输入URL后发生了什么
 
+1. 在浏览器地址栏输入URL
+
+2. 浏览器查看**缓存**，如果请求资源在缓存中并且新鲜，跳转到转码步骤
+
+   1. 如果资源未缓存，发起新请求
+
+   2. 如果已缓存，检验是否足够新鲜，足够新鲜直接提供给客户端，否则与服务器进行验证。
+
+   3. 检验新鲜通常有两个HTTP头进行控制`Expires`和`Cache-Control`：
+
+      * HTTP1.0提供Expires，值为一个绝对时间表示缓存新鲜日期
+
+      - HTTP1.1增加了Cache-Control: max-age=,值为以秒为单位的最大新鲜时间
+
+3. 浏览器**解析URL**获取协议，主机，端口，path
+
+4. 浏览器**组装一个HTTP（GET）请求报文**
+
+5. 浏览器获取主机ip地址，过程如下：
+
+   1. 浏览器缓存
+   2. 本机缓存
+   3. hosts文件
+   4. 路由器缓存
+   5. ISP DNS缓存
+   6. DNS递归查询（可能存在负载均衡导致每次IP不一样）
+
+6. 打开一个socket与目标IP地址，端口建立TCP链接，三次握手如下：
+
+   1. 客户端发送一个TCP的**SYN=1，Seq=X**的包到服务器端口
+   2. 服务器发回**SYN=1， ACK=X+1， Seq=Y**的响应包
+   3. 客户端发送**ACK=Y+1， Seq=Z**
+
+7. TCP链接建立后**发送HTTP请求**
+
+8. 服务器接受请求并解析，将请求转发到服务程序，如虚拟主机使用HTTP Host头部判断请求的服务程序
+
+9. 服务器检查**HTTP请求头是否包含缓存验证信息**如果验证缓存新鲜，返回**304**等对应状态码
+
+10. 处理程序读取完整请求并准备HTTP响应，可能需要查询数据库等操作
+
+11. 服务器将**响应报文通过TCP连接发送回浏览器**
+
+12. 浏览器接收HTTP响应，然后根据情况选择关闭TCP连接或者保留重用，关闭TCP连接的四次握手如下：
+
+    1. 主动方发送**Fin=1， Ack=Z， Seq= X**报文
+    2. 被动方发送**ACK=X+1， Seq=Z**报文
+    3. 被动方发送**Fin=1， ACK=X， Seq=Y**报文
+    4. 主动方发送**ACK=Y， Seq=X**报文
+
+13. 浏览器检查响应状态吗：是否为1XX，3XX， 4XX， 5XX，这些情况处理与2XX不同
+
+14. 如果资源可缓存，**进行缓存**
+
+15. 对响应进行**解码**（例如gzip压缩）
+
+16. 根据资源类型决定如何处理（假设资源为HTML文档）
+
+17. **解析HTML文档，构件DOM树，下载资源，构造CSSOM树，执行js脚本**，这些操作没有严格的先后顺序，以下分别解释
+
+18. 构建DOM树：
+
+    1. **Tokenizing**：根据HTML规范将字符流解析为标记
+    2. **Lexing**：词法分析将标记转换为对象并定义属性和规则
+    3. **DOM construction**：根据HTML标记关系将对象组成DOM树
+
+19. 解析过程中遇到图片、样式表、js文件，**启动下载**
+
+20. 构建CSSOM树：
+
+    1. **Tokenizing**：字符流转换为标记流
+    2. **Node**：根据标记创建节点
+    3. **CSSOM**：节点创建CSSOM树
+
+21. [根据DOM树和CSSOM树构建渲染树](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction):
+
+    1. 从DOM树的根节点遍历所有**可见节点**，不可见节点包括：1）`script`,`meta`这样本身不可见的标签。2)被css隐藏的节点，如`display: none`
+    2. 对每一个可见节点，找到恰当的CSSOM规则并应用
+    3. 发布可视节点的内容和计算样式
+
+22. js解析如下：
+
+    1. 浏览器创建Document对象并解析HTML，将解析到的元素和文本节点添加到文档中，此时**document.readystate为loading**
+    2. HTML解析器遇到**没有async和defer的script时**，将他们添加到文档中，然后执行行内或外部脚本。这些脚本会同步执行，并且在脚本下载和执行时解析器会暂停。这样就可以用document.write()把文本插入到输入流中。**同步脚本经常简单定义函数和注册事件处理程序，他们可以遍历和操作script和他们之前的文档内容**
+    3. 当解析器遇到设置了**async**属性的script时，开始下载脚本并继续解析文档。脚本会在它**下载完成后尽快执行**，但是**解析器不会停下来等它下载**。异步脚本**禁止使用document.write()**，它们可以访问自己script和之前的文档元素
+    4. 当文档完成解析，document.readState变成interactive
+    5. 所有**defer**脚本会**按照在文档出现的顺序执行**，延迟脚本**能访问完整文档树**，禁止使用document.write()
+    6. 浏览器**在Document对象上触发DOMContentLoaded事件**
+    7. 此时文档完全解析完成，浏览器可能还在等待如图片等内容加载，等这些**内容完成载入并且所有异步脚本完成载入和执行**，document.readState变为complete,window触发load事件
+
+23. **显示页面**（HTML解析过程中会逐步显示页面）
+
+参考文章：
+
+[细说浏览器输入URL后发生了什么](https://segmentfault.com/a/1190000012092552)
+
+[从浏览器地址栏输入url到显示页面的步骤(以HTTP为例)](https://github.com/qiu-deqing/FE-interview#%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5url%E5%88%B0%E6%98%BE%E7%A4%BA%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%AD%A5%E9%AA%A4%E4%BB%A5http%E4%B8%BA%E4%BE%8B)
+
+<div class="dividing-line"></div>	
+
+### HTTPS中SSL握手过程
+
+开始加密通信之前，客户端和服务器首先必须建立连接和交换参数，这个过程叫做握手（handshake）。整个握手过程可以用下图说明。
+
+![](/assets/images/前端常见知识点总结/https.png)
+
+握手阶段分成五步：
+
+1. 客户端给出协议版本号、一个客户端生成的 `随机数（Client random）`，以及客户端支持的加密方法。
+2. 服务器确认双方使用的加密方法，并给出数字证书、以及一个 `服务器生成的随机数（Server random）`。
+3. 客户端确认数字证书有效，然后生成一个新的 `随机数（Premaster secret）`，并使用数字证书中的公钥，加密这个随机数，发给服务器。
+4. 服务器使用自己的私钥，获取客户端发来的随机数（即`Premaster secret`）。
+5. 客户端和服务器根据约定的加密方法，使用前面的三个随机数，生成 `对话密钥（session key）`，用来加密接下来的整个对话过程。
+
+参考文章：
+
+[HTTPS详解](https://segmentfault.com/a/1190000011675421)
+
+<div class="dividing-line"></div>	
+
+### 常见状态码
+
+`200 OK`：请求成功，请求所希望的响应头或数据体将随此响应返回
+
+`301 Moved Permanently`：被请求的资源已**永久**移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个 URI 之一。如果可能，拥有链接编辑功能的客户端应当自动把请求的地址修改为从服务器反馈回来的地址。除非额外指定，否则这个响应也是可缓存的。 
+
+`302 Found`：请求的资源现在**临时**从不同的 URI 响应请求。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在Cache-Control或Expires中进行了指定的情况下，这个响应才是可缓存的。302重定向可能会有URL规范化及网址劫持的问题。可能被搜索引擎判为可疑转向，甚至认为是作弊。
+
+`304 Not Modified`：如果客户端发送了一个带条件的 GET 请求且该请求已被允许，而文档的内容（自上次访问以来或者根据请求的条件）并没有改变，则服务器应当返回这个状态码。304 响应禁止包含消息体，因此始终以消息头后的第一个空行结尾。
+
+`400 Bad Request`：语义有误，当前请求无法被服务器理解。除非进行修改，否则客户端不应该重复提交这个请求；请求参数有误。
+
+`403 Forbidden`：服务器已经理解请求，但是拒绝执行它。与 401 响应不同的是，身份验证并不能提供任何帮助，而且这个请求也不应该被重复提交。如果这不是一个 HEAD 请求，而且服务器希望能够讲清楚为何请求不能被执行，那么就应该在实体内描述拒绝的原因。当然服务器也可以返回一个 404 响应，假如它不希望让客户端获得任何信息。
+
+`404 Not Found`：请求失败，请求所希望得到的资源未被在服务器上发现。没有信息能够告诉用户这个状况到底是暂时的还是永久的。假如服务器知道情况的话，应当使用410状态码来告知旧资源因为某些内部的配置机制问题，已经永久的不可用，而且没有任何可以跳转的地址。404这个状态码被广泛应用于当服务器不想揭示到底为何请求被拒绝或者没有其他适合的响应可用的情况下。
+
+`500 Internal Server Error`：服务器遇到了不知道如何处理的情况。
+
+`501 Not Implemented`：此请求方法不被服务器支持且无法被处理。只有`GET`和`HEAD`是要求服务器支持的，它们必定不会返回此错误代码。
+
+`502 Bad Gateway`：此错误响应表明服务器作为网关需要得到一个处理这个请求的响应，但是得到一个错误的响应。
+
+`504 Gateway Timeout`：当服务器作为网关，不能及时得到响应时返回此错误代码。
+
+参考文章：
+
+[HTTP 响应代码](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)
+
+<div class="dividing-line"></div>	
 
 ## 其他
 
 > 一篇很有意思的文章：JavaScript实现倒计时
 
 [你真的知道怎么用javascript来写一个倒计时吗 ?](https://github.com/gomeplusFED/blog/blob/master/2016-04/do-you-really-understand-how-to-write-a-countdown-by-javascript.md)
-
 
